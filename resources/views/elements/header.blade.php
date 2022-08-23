@@ -692,7 +692,7 @@
 							<div class="header-info">
 								@auth
 								<span>{{ auth()->user()->fname }}</span>
-								<small>{{ auth()->user()->role }}</small>
+								<small>{{ auth()->user()->Role->role }}</small>
 								@else
 								<span>Unknown</span>
 								<small>Unknown</small>

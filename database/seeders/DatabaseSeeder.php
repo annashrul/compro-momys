@@ -28,6 +28,14 @@ class DatabaseSeeder extends Seeder
         //     'address' => 'Jl.wahid hasyim, bapangan jepara',
         //     'password' => bcrypt('password')
         // ]);
-
+        Role::create([
+            'role' => 'Admin'
+        ]);
+        Role::create([
+            'role' => 'User'
+        ]);
+        Role::create([
+            'role' => 'Creator'
+        ]);
     }
 }

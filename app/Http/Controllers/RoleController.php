@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -69,8 +70,8 @@ class RoleController extends Controller
     public function edit(User $user)
     {
         return view('bakery.role.edit', [
-            'user' => $user,
-            'users' => User::all()
+            'users' => $user,
+            'roless' => Role::all()
         ]);
     }
 
@@ -85,6 +86,7 @@ class RoleController extends Controller
     {
         $validatedData = $request->validate([
             'fname' => 'required|max:255',
+            'role_id' => 'required'
 
         ]);
         User::where('id', $user->id)->update($validatedData);

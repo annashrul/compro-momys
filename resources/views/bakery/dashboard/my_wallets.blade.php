@@ -2,6 +2,8 @@
 @extends('layout.default')
 
 
+@can('admin')
+	
 
 {{-- Content --}}
 @section('content')
@@ -37,7 +39,7 @@
 							<td><strong>{{ $loop->iteration }}</strong></td>
 							<td><div class="d-flex align-items-center"><span class="w-space-no">{{ $user->fname }}</span></div></td>
 							<td>{{ $user->email }}	</td>
-							<td>{{ $user->role }}</td>
+							<td>{{ $user->Role->role }}</td>
 							<td>
 								<div class="d-flex">
 									<a href="/my-wallets/management-data/{{ $user->id }}/edit" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fas fa-pencil-alt"></i></a>
@@ -69,3 +71,5 @@
 		}); 
 	</script>
 @endsection
+
+@endcan

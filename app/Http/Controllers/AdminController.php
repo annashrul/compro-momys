@@ -78,7 +78,6 @@ class AdminController extends Controller
         $action = __FUNCTION__;
         return view('bakery.dashboard.my_wallets', [
             'title' => 'Role User',
-            'role' => User::all(),
             'users' => User::all()
         ]);
     }

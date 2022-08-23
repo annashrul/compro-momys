@@ -12,12 +12,12 @@
 		<div class="card-body">
 			<div class="table-responsive">
 				<div class="col-lg-8">
-				<form action="/my-wallets/management-data/{{ $user->id }}" method="POST">
+				<form action="/my-wallets/management-data/{{ $users->id }}" method="POST">
 					@method('put')
 					@csrf
                     <div class="form-group">
                         <label class="mb-1" for="fname"><strong>First name</strong></label>
-                        <input type="text" class="form-control @error('fname') is-invalid @enderror" placeholder="First name" name="fname" id="fname" value="{{ old('fname',  $user->fname) }}">
+                        <input type="text" class="form-control @error('fname') is-invalid @enderror" placeholder="First name" name="fname" id="fname" value="{{ old('fname',  $users->fname) }}">
                         @error('fname')
                         <div class="invalid-feedback">
                         	{{ $message }}
@@ -25,13 +25,13 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label class="mb-1" for="role"><strong>Role User</strong></label>
-                        <select class="form-select" name="role" id="role">
-                        @foreach ($users as $user)
-                        @if (old('role', $user->id) == $user->id)
-                        <option value="{{ $user->role }}" selected>{{ $user->role }}</option>
+                        <label class="mb-1" for="role_id"><strong>Role User</strong></label>
+                        <select class="form-select" name="role_id" id="role_id">
+                        @foreach ($roless as $roles)
+                        @if (old('role', $users->role_id) == $roles->id)
+                        <option value="{{ $roles->id }}" selected>{{ $roles->role }}</option>
                         @else
-                        <option value="{{ $user->role }}">{{ $user->role }}</option>
+                        <option value="{{ $roles->id }}">{{ $roles->role }}</option>
                         @endif
                         @endforeach
                         </select>
