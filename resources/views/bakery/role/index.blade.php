@@ -82,12 +82,8 @@
                     <div class="form-group">
                         <label class="mb-1" for="role"><strong>Role User</strong></label>
                         <select class="form-select" name="role" id="role">
-                        @foreach ($users as $user)
-                        @if (old('role') == $user->role)
-                        <option value="{{ $user->role }}" selected>{{ $user->role }}</option>
-                        @else
-                        <option value="{{ $user->role }}">{{ $user->role }}</option>
-                        @endif
+                        @foreach ($roles as $role)
+                        <option value="{{ $role->id }}">{{ $role->role }}</option>
                         @endforeach
                         </select>
                     </div>

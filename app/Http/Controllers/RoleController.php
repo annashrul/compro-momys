@@ -28,6 +28,10 @@ class RoleController extends Controller
      */
     public function create()
     {
+        return view('bakery.role.index', [
+            'users' => auth()->user(),
+            'roles' => Role::all()
+        ]);
     }
 
     /**
@@ -71,7 +75,8 @@ class RoleController extends Controller
     public function edit(User $user)
     {
         return view('bakery.role.edit', [
-            'users' => $user,
+            'users' => auth()->user(),
+            'user' => $user,
             'roless' => Role::all()
         ]);
     }

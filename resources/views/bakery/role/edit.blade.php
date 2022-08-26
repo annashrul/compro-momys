@@ -17,7 +17,7 @@
 					@csrf
                     <div class="form-group">
                         <label class="mb-1" for="fname"><strong>First name</strong></label>
-                        <input type="text" class="form-control @error('fname') is-invalid @enderror" placeholder="First name" name="fname" id="fname" value="{{ old('fname',  $users->fname) }}">
+                        <input type="text" class="form-control @error('fname') is-invalid @enderror" placeholder="First name" name="fname" id="fname" value="{{ old('fname',  $user->fname) }}">
                         @error('fname')
                         <div class="invalid-feedback">
                         	{{ $message }}
@@ -28,7 +28,7 @@
                         <label class="mb-1" for="role_id"><strong>Role User</strong></label>
                         <select class="form-select" name="role_id" id="role_id">
                         @foreach ($roless as $roles)
-                        @if (old('role', $users->role_id) == $roles->id)
+                        @if (old('role', $user->role_id) == $roles->id)
                         <option value="{{ $roles->id }}" selected>{{ $roles->role }}</option>
                         @else
                         <option value="{{ $roles->id }}">{{ $roles->role }}</option>
