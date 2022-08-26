@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
 
 /*
@@ -33,6 +34,9 @@ Route::resource('/my-wallets/management-data', RoleController::class)->middlewar
     'management-data' => 'user:id',
 ]);
 Route::get('/app-profile',  [AdminController::class, 'app_profile']);
+Route::resource('/app-profile/edit-profile', ProfileController::class)->parameters([
+    'edit-profile' => 'user:id',
+]);
 Route::get('/post-details', [AdminController::class, 'post_details']);
 Route::get('/page-chat',    [AdminController::class, 'page_chat']);
 Route::get('/project-list', [AdminController::class, 'project_list']);

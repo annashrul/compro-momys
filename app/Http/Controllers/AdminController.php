@@ -15,7 +15,9 @@ class AdminController extends Controller
         $page_description = 'Some description for the page';
         $action = __FUNCTION__;
 
-        return view('bakery.dashboard.index', compact('page_title', 'page_description', 'action'));
+        return view('bakery.dashboard.index', [
+            'users' => auth()->user()
+        ]);
     }
 
     // Dashboard 2
@@ -78,7 +80,8 @@ class AdminController extends Controller
         $action = __FUNCTION__;
         return view('bakery.dashboard.my_wallets', [
             'title' => 'Role User',
-            'users' => User::all()
+            'users' => auth()->user(),
+            'user' => User::all()
         ]);
     }
 
@@ -89,7 +92,11 @@ class AdminController extends Controller
         $page_title = 'Profile';
         $page_description = 'Some description for the page';
         $action = __FUNCTION__;
-        return view('bakery.app.profile', compact('page_title', 'page_description', 'action'));
+        return view('bakery.app.profile', [
+            'users' => auth()->user(),
+
+
+        ]);
     }
 
     // Post Details

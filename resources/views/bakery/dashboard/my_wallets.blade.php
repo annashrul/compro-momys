@@ -34,16 +34,16 @@
 						</tr>
 					</thead>
 					<tbody>
-						@foreach ($users as $user)
+						@foreach ($user as $usr)
 						<tr>
 							<td><strong>{{ $loop->iteration }}</strong></td>
-							<td><div class="d-flex align-items-center"><span class="w-space-no">{{ $user->fname }}</span></div></td>
-							<td>{{ $user->email }}	</td>
-							<td>{{ $user->Role->role }}</td>
+							<td><div class="d-flex align-items-center"><span class="w-space-no">{{ $usr->fname }}</span></div></td>
+							<td>{{ $usr->email }}	</td>
+							<td>{{ $usr->Role->role }}</td>
 							<td>
 								<div class="d-flex">
-									<a href="/my-wallets/management-data/{{ $user->id }}/edit" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fas fa-pencil-alt"></i></a>
-									<form action="/my-wallets/management-data/{{ $user->id }}" method="POST">
+									<a href="/my-wallets/management-data/{{ $usr->id }}/edit" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fas fa-pencil-alt"></i></a>
+									<form action="/my-wallets/management-data/{{ $usr->id }}" method="POST">
 										@method('delete')
 										@csrf
 										<button class="btn btn-danger shadow btn-xs sharp" onclick="return confirm('Are you sure?')"><i class="fa fa-trash"></i></button>

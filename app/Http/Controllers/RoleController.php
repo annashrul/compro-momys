@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class RoleController extends Controller
 {
@@ -15,6 +16,9 @@ class RoleController extends Controller
      */
     public function index()
     {
+        return view('bakery.role.index', [
+            'users' => User::all()
+        ]);
     }
 
     /**
@@ -24,9 +28,6 @@ class RoleController extends Controller
      */
     public function create()
     {
-        return view('bakery.role.index', [
-            'users' => User::all()
-        ]);
     }
 
     /**
@@ -101,6 +102,9 @@ class RoleController extends Controller
      */
     public function destroy(User $user)
     {
+        if ($user->image) {
+            Storage::delete($user->image);
+        }
         User::destroy($user->id);
         return redirect('/my-wallets')->with('success', 'User has been deleted');
     }

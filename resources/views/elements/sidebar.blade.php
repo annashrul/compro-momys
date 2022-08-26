@@ -5,13 +5,18 @@
     <div class="deznav-scroll">
 		<div class="main-profile">
 			<div class="image-bx">
-				<img src="images/Untitled-1.jpg" alt="">
+				@if ($users->image)
+				<img src="{{ asset('storage/'.  $users->image ) }}" alt="">
+				@else
+				<img src="/images/profile.png" alt="">
+				@endif
+				
 				<a href="javascript:void(0);"><i class="fa fa-cog" aria-hidden="true"></i></a>
 			</div>
 			@auth
 			<h5 class="name"><span class="font-w400">Hello,</span>{{ auth()->user()->fname }}</h5>
 			@else
-			<h5 class="name"><span class="font-w400">Hello,</span> Marquez</h5>
+			<h5 class="name"><span class="font-w400">Hello,</span>Guest</h5>
 			@endauth
 			@auth
 			<p class="email">{{ auth()->user()->email }}</p>

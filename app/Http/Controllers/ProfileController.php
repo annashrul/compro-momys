@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
-class ManagementController extends Controller
+class ProfileController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -46,7 +48,6 @@ class ManagementController extends Controller
      */
     public function show(User $user)
     {
-        //
     }
 
     /**
@@ -57,7 +58,9 @@ class ManagementController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        return view('bakery.profile.edit-profile', [
+            'users' => $user,
+        ]);
     }
 
     /**
@@ -69,7 +72,25 @@ class ManagementController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        $validatedData = $request->validate([
+            'fname' => 'required|max:255',
+            'lname' => 'required|max:255',
+            'email' => 'required|email',
+            'image' => 'image|file|max:1024',
+            'phone_number' => 'required|max:13',
+            'birth_place' => 'required'
+        ]);
+
+        if ($request->file('image')) {
+            if ($request->oldImage) {
+                Storage::delete($request->oldImage);
+            }
+            $validatedData['image'] = $request->file('image')->store('post-image');
+        }
+
+
+        User::where('id', $user->id)->update($validatedData);
+        return redirect('/app-profile')->with('success', 'Detail profile has been updated');
     }
 
     /**
@@ -80,6 +101,5 @@ class ManagementController extends Controller
      */
     public function destroy(User $user)
     {
-        //
     }
 }
