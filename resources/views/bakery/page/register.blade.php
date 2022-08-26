@@ -72,9 +72,10 @@
                             </div>
                             <div class="form-group">
                                 <label for="gender" class="form-label"><strong>Gender</strong></label>
-                                <select class="form-select" name="gender" value="{{ old('gender') }}">
-                                <option value="male">Male</option>
-                                <option value="female">Female</option>
+                                <select class="form-select" name="gender" value="">
+                                    <option value="" disabled>Select Gender</option>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
                                 </select>
                             </div>
                             <div class="form-group">
@@ -90,6 +91,15 @@
                                 <label class="mb-1" for="password"><strong>Password</strong></label>
                                 <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" id="password" placeholder="Password">
                                 @error('password')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                                @enderror
+                            </div>
+                             <div class="form-group">
+                                <label class="mb-1" for="password"><strong>Password Confirmation</strong></label>
+                                <input type="password" class="form-control @error('password_confirmed') is-invalid @enderror" name="password_confirmation" id="password" placeholder="Password">
+                                @error('password_confirmed')
                                 <div class="invalid-feedback">
                                     {{ $message }}
                                 </div>

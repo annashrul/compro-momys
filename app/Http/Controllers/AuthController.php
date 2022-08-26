@@ -61,7 +61,8 @@ class AuthController extends Controller
             'dob' => 'required|max:10|min:10',
             'birth_place' => 'required|max:255',
             'address' => 'required|max:255',
-            'password' => 'required|min:5|max:255'
+            'password' => 'required|min:5|max:255|confirmed',
+            'password_confirmed' => 'min:5'
         ]);
         $validatedData['password'] = Hash::make($validatedData['password']);
         User::create($validatedData);

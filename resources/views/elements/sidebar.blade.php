@@ -45,9 +45,12 @@
                 <ul aria-expanded="false">
 					<li><a href="{!! url('/my-wallets'); !!}">Role User</a></li>
 				</ul>
+				 <ul aria-expanded="false">
+					<li><a href="{!! url('/users'); !!}">User Data</a></li>
+				</ul>
             </li>
 			@endcan
-			<li class="nav-label">Apps</li>
+			{{-- <li class="nav-label">Apps</li>
             <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
 				<i class="flaticon-077-menu-1"></i>
 					<span class="nav-text">Apps</span>
@@ -193,11 +196,11 @@
                     </li>
                     <li><a href="{!! url('/page-lock-screen'); !!}">Lock Screen</a></li>
                 </ul>
-            </li>
+            </li> --}}
         </ul>
 		<div class="copyright">
-			<p><strong>Zenix Crypto Admin Dashboard</strong> © 2021 All Rights Reserved</p>
-			<p class="fs-12">Made with <span class="heart"></span> by DexignZone</p>
+			<p><strong>Mommys Bakery</strong> © 2022 All Rights Reserved</p>
+			<!-- <p class="fs-12">Made with <span class="heart"></span> by DexignZone</p> -->
 		</div>
 	</div>
 </div>

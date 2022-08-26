@@ -39,7 +39,9 @@
                             </div>
                             <div class="form-group">
                                 <label class="mb-1"><strong>Password</strong></label>
+                                
                                 <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" id="password" placeholder="Password">
+                                 
                                 @error('epassword')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -70,3 +72,7 @@
         </div>
     </div>
 @endsection  
+
+@section('scripts')
+
+@endsection

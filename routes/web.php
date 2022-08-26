@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,9 +31,13 @@ Route::get('/portofolio',   [AdminController::class, 'portofolio']);
 Route::get('/market-capital', [AdminController::class, 'market_capital']);
 Route::get('/tranasactions', [AdminController::class, 'tranasactions']);
 Route::get('/my-wallets',   [AdminController::class, 'my_wallets'])->middleware('admin');
+
+Route::resource('/users', UserController::class)->middleware('admin');
+ 
 Route::resource('/my-wallets/management-data', RoleController::class)->middleware('admin')->parameters([
     'management-data' => 'user:id',
 ]);
+
 Route::get('/app-profile',  [AdminController::class, 'app_profile']);
 Route::resource('/app-profile/edit-profile', ProfileController::class)->parameters([
     'edit-profile' => 'user:id',
