@@ -6,6 +6,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProductController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +35,7 @@ Route::get('/tranasactions', [AdminController::class, 'tranasactions']);
 Route::get('/my-wallets',   [AdminController::class, 'my_wallets'])->middleware('admin');
 
 Route::resource('/users', UserController::class)->middleware('admin');
+Route::resource('/products', ProductController::class)->middleware('admin');
  
 Route::resource('/my-wallets/management-data', RoleController::class)->middleware('admin')->parameters([
     'management-data' => 'user:id',
