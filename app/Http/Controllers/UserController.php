@@ -56,9 +56,19 @@ class UserController extends Controller
             'dob' => 'required|max:10|min:10',
             'birth_place' => 'required|max:255',
             'address' => 'required|max:255',
-            'password' => 'required|min:5|max:255'
+            'password' => 'required|min:5|max:255',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
-        User::create($validatedData);
+
+        $input = $request->all();
+
+        if ($image = $request->file('image')) {
+            $destinationPath = 'image/';
+            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $profileImage);
+            $input['image'] = "$profileImage";
+        }
+        User::create($input);
         return redirect('/users')->with('success', 'New user has been Added');
     }
 
@@ -99,7 +109,7 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
           $validatedData = $request->validate([
-             'fname' => 'required|max:255',
+            'fname' => 'required|max:255',
             'lname' => 'required|max:255',
             'email' => 'required|email:dns|unique:users',
             'phone_number' => 'required|max:13|unique:users',
@@ -109,7 +119,19 @@ class UserController extends Controller
             'password' => 'required|min:5|max:255'
 
         ]);
-        User::where('id', $user->id)->update($validatedData);
+        $input = $request->all();
+  
+        if ($image = $request->file('image')) {
+            $destinationPath = 'image/';
+            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $profileImage);
+            $input['image'] = "$profileImage";
+        }else{
+            unset($input['image']);
+        }
+          
+        
+        User::where('id', $user->id)->update($input);
         return redirect('/users')->with('success', 'New user has been Updated');
     }
 
