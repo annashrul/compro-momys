@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Role;
 
 
 class UserController extends Controller
@@ -32,7 +33,11 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('bakery.users.index',[
+            'users' => auth()->user(),
+            'roles' => Role::all(),
+            'title' => "Add New User"
+        ]);
     }
 
     /**
@@ -74,9 +79,14 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        //
+         return view('bakery.users.edit', [
+            'users' => auth()->user(),
+            'user' => $user,
+            'roles' => Role::all(),
+            'title' => 'Edit Data User'
+        ]);
     }
 
     /**
@@ -86,9 +96,21 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        //
+          $validatedData = $request->validate([
+             'fname' => 'required|max:255',
+            'lname' => 'required|max:255',
+            'email' => 'required|email:dns|unique:users',
+            'phone_number' => 'required|max:13|unique:users',
+            'dob' => 'required|max:10|min:10',
+            'birth_place' => 'required|max:255',
+            'address' => 'required|max:255',
+            'password' => 'required|min:5|max:255'
+
+        ]);
+        User::where('id', $user->id)->update($validatedData);
+        return redirect('/users')->with('success', 'New user has been Updated');
     }
 
     /**
@@ -99,6 +121,6 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        
     }
 }

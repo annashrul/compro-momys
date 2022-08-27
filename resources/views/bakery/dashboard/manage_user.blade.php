@@ -7,13 +7,14 @@
 
 {{-- Content --}}
 @section('content')
+<div class="container-fluid">
 <div class="col-lg-12">
 	<div class="card">
 		<div class="card-header">
 			<h4 class="card-title">{{$title}}</h4>
 		</div>
 		<div class="col-lg-6">
-			<a href="/my-wallets/management-data/create" class="btn btn-primary m-4">Add New User</a>
+			<a href="/users/create" class="btn btn-primary m-4">Add New User</a>
 		</div>
 		@if (session()->has('success'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -45,7 +46,7 @@
 							<td>{{ $usr->Role->role }}</td>
 							<td>
 								<div class="d-flex">
-									<a href="/my-wallets/management-data/{{ $usr->id }}/edit" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fas fa-pencil-alt"></i></a>
+									<a href="/users/{{ $usr->id }}/edit" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fas fa-pencil-alt"></i></a>
 									<form action="/my-wallets/management-data/{{ $usr->id }}" method="POST">
 										@method('delete')
 										@csrf
@@ -64,6 +65,9 @@
 		</div>
 	</div>
 </div>
+</div>
+
+
 @endsection	
 
 {{-- Scripts --}}
