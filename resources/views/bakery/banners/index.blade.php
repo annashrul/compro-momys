@@ -14,7 +14,7 @@
 		<div class="card-body">
 			<div class="table-responsive">
 				<div class="col-lg-12">
-				<form action="/users" method="POST">
+				<form action="/banners" method="POST" enctype="multipart/form-data">
 					@csrf
                   
                     <div class="form-group">
@@ -29,7 +29,7 @@
 
                     <div class="form-group">
                         <label class="mb-1" for="image"><strong>Image</strong></label>
-                        <input type="file" class="form-file-input  @error('image') is-invalid @enderror" name="image" id="imae" placeholder="Image">
+                        <input type="file" class="form-file-input  @error('image') is-invalid @enderror" name="image" id="image" placeholder="Image">
                         @error('image')
                             <div class="invalid-feedback">
                                 {{ $message }}

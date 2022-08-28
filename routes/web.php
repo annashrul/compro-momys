@@ -35,7 +35,7 @@ Route::get('/app-profile',  [AdminController::class, 'app_profile']);
 Route::resource('/app-profile/edit-profile', ProfileController::class)->parameters([
     'edit-profile' => 'user:id',
 ]);
-Route::resource('/banner', BannerController::class)->middleware('admin');
+Route::resource('/banners', BannerController::class)->middleware('admin');
 
 
 Route::get('/',             [AdminController::class, 'dashboard_1'])->middleware('auth');

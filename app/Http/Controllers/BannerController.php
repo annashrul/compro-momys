@@ -21,7 +21,7 @@ class BannerController extends Controller
         return view('bakery.dashboard.manage_banner', [
             'title' => $page_title,
             'users' => auth()->user(),
-            'user' => Banner::paginate(10)
+            'data' => Banner::paginate(10)
         ]);
     }
 
@@ -50,8 +50,9 @@ class BannerController extends Controller
     {
          $validatedData = $request->validate([
             'detail' => 'required|max:1000',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image' => 'required|image|max:2048',
         ]);
+        
 
         $input = $request->all();
         if ($image = $request->file('image')) {
@@ -62,7 +63,7 @@ class BannerController extends Controller
         }
 
         Banner::create($input);
-        return redirect('/banner')->with('success', 'New Banner has been Added');
+        return redirect('/banners')->with('success', 'New Banner has been Added');
 
     }
 
@@ -83,9 +84,14 @@ class BannerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Banner $banner)
     {
-        //
+           return view('bakery.banners.edit', [
+            'users' => auth()->user(),
+            'data' => $banner,
+            'banner' => Banner::all(),
+            'title' => 'Create Data User'
+        ]);
     }
 
     /**
