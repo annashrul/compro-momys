@@ -7,6 +7,18 @@ use App\Http\Controllers\Controller;
 class HomeController extends Controller
 {
     public function index(){
+        $data['banner']=[
+            [
+                "title"=>"INTRODUCING ROCKY ROAD",
+                "img"=>"https://templates.hibootstrap.com/solit/default/assets/img/banner/banner_1.png",
+                "desc"=>"The perfect summertime snack!"
+            ],
+            [
+                "title"=>"INTRODUCING ROCKY ROAD",
+                "img"=>"images/Rectangle.png",
+                "desc"=>"The perfect summertime snack!"
+            ]
+        ];
         $data['card'] = [
             [
                 "title"=>"THE SWEETEST GIFT",

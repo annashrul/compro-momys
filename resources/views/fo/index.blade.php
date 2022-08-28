@@ -2,7 +2,7 @@
 $urlCss = 'fo/css/';
 $urlJs = 'fo/js/';
 $logo="images/logo-text-transparent.png";
-$menu=["shop",'local delivery or pickup','corporate gifting'];
+$menu=["shop",'location','local delivery or pickup','grocery stores'];
 
 ?>
         <!doctype html>
@@ -14,6 +14,8 @@ $menu=["shop",'local delivery or pickup','corporate gifting'];
     <link rel="stylesheet" href="<?=$urlCss.'bootstrap.min.css'?>">
     <link rel="stylesheet" href="<?=$urlCss.'animate.min.css'?>">
     <link rel="stylesheet" href="<?=$urlCss.'boxicons.min.css'?>" />
+    <link rel="stylesheet" href="<?=$urlCss.'owl.carousel.min.css'?>" />
+
     <link rel="stylesheet" href="<?=$urlCss.'meanmenu.css'?>">
     <link rel="stylesheet" href="<?=$urlCss.'style.css'?>">
     <link rel="icon" type="image/png" href="images/favicon.png">
@@ -34,6 +36,7 @@ $menu=["shop",'local delivery or pickup','corporate gifting'];
 {{-- *************** NAVBAR **************--}}
 <div class="navbar-area">
     <div class="mobile-nav">
+
         <a href="#" class="logo">
             <img src="<?=$logo?>" class="logo-one h-50" alt="Logo">
         </a>
@@ -46,41 +49,37 @@ $menu=["shop",'local delivery or pickup','corporate gifting'];
                     <a class="navbar-brand" href="#">
                         <img src="<?=$logo?>" class="logo-one h-70" alt="Logo">
                     </a>
+
                     <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
-                        <ul class="navbar-nav">
+                        <div class=" m-auto"></div>
+                        <ul class="nav navbar-nav mx-auto">
                             <?php foreach ($menu as $row): ?>
                             <li class="nav-item">
                                 <a href="#" class="nav-link">
-                                   <?=strtoupper($row)?>
+                                    <?=strtoupper($row)?>
                                 </a>
                             </li>
                             <?php endforeach; ?>
+                            <li class="nav-item mobile-nav-icon">
+                                <a href="#" class="nav-link" style="display: flex">
+                                    <i class="bx bx-user fs-30" style="margin-right: 10px"></i>
+                                    <i class="bx bx-cart fs-30"></i>
+                                </a>
+                            </li>
                         </ul>
                         <div class=" m-auto"></div>
-                        <div class="nav-side d-display nav-side-mt">
-                            <ul class="navbar-nav">
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        OUR STORIES
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        OUR BAKERIES
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="bx bx-user fs-30"></i>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="bx bx-cart fs-30"></i>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="bx bx-user fs-30"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="bx bx-cart fs-30"></i>
+                                </a>
+                            </li>
+                        </ul>
                     </div>
                 </nav>
             </div>
@@ -89,16 +88,17 @@ $menu=["shop",'local delivery or pickup','corporate gifting'];
 </div>
 
 {{-- *************** BANNER **************--}}
-<div class="banner-area-two">
+<div class="banner-area-two owl-carousel owl-theme">
+    <?php foreach ($banner as $row):?>
     <div class="container-fluid p-0" style="position: relative;">
-        <img style="width: 100%;" src="images/Rectangle.png" alt="Images">
+        <img style="" src="<?=$row['img']?>" alt="Images" class="banner-img">
         <div  class="wrap-text-banner">
-            <b>The perfect summertime snack!</b><br/>
-            <b class="fs-50 fw-bold">INTRODUCING ROCKY ROAD</b><br/>
+            <b class="fs-50 fw-bold"><?=$row['title']?></b><br/>
+            <b><?=$row['desc']?></b><br/><br/>
             <a href="#" class="default-btn btn-bg-two">SEND COOKIES</a>
         </div>
-
     </div>
+    <?php endforeach;?>
 </div>
 {{-- *************** PRODUCT **************--}}
 <div class="pt-100 pb-70">
@@ -110,20 +110,18 @@ $menu=["shop",'local delivery or pickup','corporate gifting'];
         </div>
         <div class="row pt-45">
            <?php for($i=0;$i<8;$i++): ?>
-            <div class="col-lg-3 col-sm-6">
+            <div class="col-6 col-xs-6 col-lg-3 col-sm-6">
                 <div class="product-card">
                     <div class="product-item-img">
-                        <a href="">
-                            <img src="images/produk/1.png" alt="blog-bg-image" />
-                        </a>
+                        <img src="images/produk/1.png" alt="blog-bg-image" />
                         <p style="display: <?=$i%2==0?'block':'none'?>" class="tag">NEW</p>
                     </div>
-                    <div class="row">
-                        <div class="col-md-8">
+                    <div class="row wrap-content-product">
+                        <div class="col-12 col-xs-12 col-md-8">
                             <p class="fw-500">$600</p>
                             <p class="fw-bold">Whole Graint Spelt</p>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-12 col-xs-12 col-md-4">
                             <p class="fw-500">290g</p>
                             <button class="btn-add">Add</button>
                         </div>
@@ -165,7 +163,7 @@ $menu=["shop",'local delivery or pickup','corporate gifting'];
     <div class="container">
         <div class="row pt-45">
             <?php foreach ($card as $row): ?>
-            <div class="col-lg-4 col-6">
+            <div class="col-12 col-xs-12 col-lg-4 col-6">
                 <div class="service-card service-card-color">
                     <img src="<?=$row["img"]?>" alt="">
                     <h3><?=$row["title"]?></h3><br/>
@@ -184,7 +182,7 @@ $menu=["shop",'local delivery or pickup','corporate gifting'];
     <div class="container">
         <div class="footer-top pt-100 pb-70">
             <div class="row">
-                <div class="col-lg-6 pr-40">
+                <div class="col-12 col-xs-12 col-lg-6 pr-40">
                     <h3 style="line-height: 40px;color:white">WE BAKE EMAILS TOO. <br/>SIGN UP TO RECEIVE THE LATEST NEWS.</h3>
                     <br>
                     <div class="input-group">
@@ -217,6 +215,7 @@ $menu=["shop",'local delivery or pickup','corporate gifting'];
 
 <script src="<?=$urlJs?>jquery.min.js"></script>
 <script src="<?=$urlJs?>wow.min.js"></script>
+<script src="<?=$urlJs?>owl.carousel.min.js"></script>
 <script src="<?=$urlJs?>meanmenu.js"></script>
 <script src="<?=$urlJs?>custom.js"></script>
 </body>

@@ -31,5 +31,16 @@
     $(".go-top").on("click", function () {
         $("html, body").animate({ scrollTop: "0" }, 50);
     });
+    $(".banner-area-two").owlCarousel({
+        loop: true,
+        margin: 0,
+        items: 1,
+        smartSpeed: 950,
+        dots: true,
+        autoplay:true,
+        autoplayTimeout:5000,
+        // autoplayHoverPause:true
+    });
+
 })(jQuery);
 
