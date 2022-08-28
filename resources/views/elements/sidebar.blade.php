@@ -49,7 +49,7 @@
 					<li><a href="{!! url('/users'); !!}">User Data</a></li>
 				</ul>
 				<ul aria-expanded="false">
-					<li><a href="{!! url('/banner'); !!}">Banner Data</a></li>
+					<li><a href="{!! url('/banners'); !!}">Banner Data</a></li>
 				</ul>
             </li>
 			@endcan

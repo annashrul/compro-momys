@@ -16,7 +16,7 @@
 		<div class="col-lg-12">
 			<div class="row">
 				<div class="col-md-6">
-					<a href="/banner/create" class="btn btn-primary m-4">Add New Banner</a>
+					<a href="/banners/create" class="btn btn-primary m-4">Add New Banner</a>
 				</div>
 			</div>
 			{{-- <div class="row">
@@ -51,8 +51,8 @@
 
 							<td>
 								<div class="d-flex">
-									<a href="/users/{{ $usr->id }}/edit" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fas fa-pencil-alt"></i></a>
-									<form action="/my-wallets/management-data/{{ $usr->id }}" method="POST">
+									<a href="/banners/{{ $usr->id }}/edit" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fas fa-pencil-alt"></i></a>
+									<form action="/banners/{{ $usr->id }}" method="POST">
 										@method('delete')
 										@csrf
 										<button class="btn btn-danger shadow btn-xs sharp" onclick="return confirm('Are you sure?')"><i class="fa fa-trash"></i></button>

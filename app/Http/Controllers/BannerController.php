@@ -50,8 +50,9 @@ class BannerController extends Controller
     {
          $validatedData = $request->validate([
             'detail' => 'required|max:1000',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image' => 'required|image|max:2048',
         ]);
+        
 
         $input = $request->all();
         if ($image = $request->file('image')) {
@@ -62,7 +63,7 @@ class BannerController extends Controller
         }
 
         Banner::create($input);
-        return redirect('/banner')->with('success', 'New Banner has been Added');
+        return redirect('/banners')->with('success', 'New Banner has been Added');
 
     }
 

@@ -14,7 +14,7 @@
 		<div class="card-body">
 			<div class="table-responsive">
 				<div class="col-lg-12">
-				<form action="/users" method="POST">
+				<form action="/users" method="POST" enctype="multipart/form-data">
 					@csrf
                     <div class="form-group">
                         <label class="mb-1" for="fname"><strong>First name</strong></label>
@@ -72,14 +72,14 @@
                     </div>
                     <div class="form-group">
                         <label for="gender" class="form-label"><strong>Gender</strong></label>
-                        <select class="form-select" name="gender_id" value="{{ old('gender') }}">
+                        <select class="form-select" name="gender" value="{{ old('gender') }}">
                         	<option value="male">Male</option>
                         	<option value="female">Female</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label class="mb-1" for="role"><strong>Role User</strong></label>
-                        <select class="form-select" name="role" id="role">
+                        <select class="form-select" name="role_id" id="role">
                         @foreach ($roles as $role)
                         <option value="{{ $role->id }}">{{ $role->role }}</option>
                         @endforeach

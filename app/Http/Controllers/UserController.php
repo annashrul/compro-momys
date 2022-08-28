@@ -91,7 +91,8 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-         return view('bakery.users.index', [
+        // var_dump($user->fname);
+         return view('bakery.users.edit', [
             'users' => auth()->user(),
             'user' => $user,
             'roles' => Role::all(),
@@ -111,15 +112,15 @@ class UserController extends Controller
           $validatedData = $request->validate([
             'fname' => 'required|max:255',
             'lname' => 'required|max:255',
-            'email' => 'required|email:dns|unique:users',
-            'phone_number' => 'required|max:13|unique:users',
+            'email' => 'required|email:dns|unique:users,id,'.$user->id,
+            'phone_number' => 'required|max:13|unique:users,id,'.$user->id,
             'dob' => 'required|max:10|min:10',
             'birth_place' => 'required|max:255',
             'address' => 'required|max:255',
             'password' => 'required|min:5|max:255'
 
         ]);
-        $input = $request->all();
+        $input = $request->except(['_token', '_method' ]);
   
         if ($image = $request->file('image')) {
             $destinationPath = 'image/';
@@ -132,6 +133,7 @@ class UserController extends Controller
           
         
         User::where('id', $user->id)->update($input);
+        // $user->update($input);
         return redirect('/users')->with('success', 'New user has been Updated');
     }
 
