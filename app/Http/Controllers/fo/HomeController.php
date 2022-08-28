@@ -10,12 +10,12 @@ class HomeController extends Controller
         $data['banner']=[
             [
                 "title"=>"INTRODUCING ROCKY ROAD",
-                "img"=>"https://templates.hibootstrap.com/solit/default/assets/img/banner/banner_1.png",
+                "img"=>"https://wallpaperaccess.com/full/109672.jpg",
                 "desc"=>"The perfect summertime snack!"
             ],
             [
                 "title"=>"INTRODUCING ROCKY ROAD",
-                "img"=>"images/Rectangle.png",
+                "img"=>"https://wallpapercave.com/wp/GoYcMqd.jpg",
                 "desc"=>"The perfect summertime snack!"
             ]
         ];

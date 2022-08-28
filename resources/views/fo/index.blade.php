@@ -101,7 +101,7 @@ $menu=["shop",'location','local delivery or pickup','grocery stores'];
     <?php endforeach;?>
 </div>
 {{-- *************** PRODUCT **************--}}
-<div class="pt-100 pb-70">
+<div class="pt-100 pb-70" style="background-color:rgba(0, 0, 0, 0.1);background-image: url('{{asset("images/Group-1.png")}}');background-size: cover;">
     <div class="container">
         <div class="section-title text-center">
             <h2>NOT JUST A COOKIE, BUT *THE* COOKIE</h2><br/>
@@ -134,7 +134,7 @@ $menu=["shop",'location','local delivery or pickup','grocery stores'];
 </div>
 
 {{-- *************** STORY **************--}}
-<section class="pt-70 pb-70">
+<section class="pt-100 pb-70">
     <div class="container">
         <div class="section-title text-center">
             <h2>THE STORY BEHIND THE COOKIE THAT BECAME A NEW YORK INSTITUTION</h2><br/>
