@@ -12,6 +12,9 @@
 			<h4 class="card-title">{{$title}}</h4>
 		</div>
 		<div class="card-body">
+            <div class="card-body">
+                <img id="imgPreview" alt="" style="width: 90%;height:400px;border:1px;border-radius:10px; margin:auto;" >
+            </div>
 			<div class="table-responsive">
 				<div class="col-lg-12">
 				<form action="/banners" method="POST" enctype="multipart/form-data">
@@ -56,5 +59,21 @@
 				$(this).addClass("active");
 		  	});
 		}); 
+        
+$(document).ready(()=>{
+      $('#image').change(function(){
+        const file = this.files[0];
+        console.log(file);
+        if (file){
+          let reader = new FileReader();
+          reader.onload = function(event){
+            console.log(event.target.result);
+            $('#imgPreview').attr('src', event.target.result);
+          }
+          reader.readAsDataURL(file);
+        }
+      });
+    });
 	</script>
+    
 @endsection

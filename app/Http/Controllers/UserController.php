@@ -112,27 +112,27 @@ class UserController extends Controller
           $validatedData = $request->validate([
             'fname' => 'required|max:255',
             'lname' => 'required|max:255',
-            'email' => 'required|email:dns|unique:users,id,'.$user->id,
-            'phone_number' => 'required|max:13|unique:users,id,'.$user->id,
+            'email' => 'required|email:dns|unique:users',
+            'phone_number' => 'required|max:13|unique:users',
             'dob' => 'required|max:10|min:10',
             'birth_place' => 'required|max:255',
             'address' => 'required|max:255',
             'password' => 'required|min:5|max:255'
 
         ]);
-        $input = $request->except(['_token', '_method' ]);
+        // $input = $request->except(['_token', '_method' ]);
   
         if ($image = $request->file('image')) {
             $destinationPath = 'image/';
             $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
             $image->move($destinationPath, $profileImage);
-            $input['image'] = "$profileImage";
+            $validatedData['image'] = "$profileImage";
         }else{
-            unset($input['image']);
+            unset($validatedData['image']);
         }
           
         
-        User::where('id', $user->id)->update($input);
+        User::where('id', $user->id)->update($validatedData);
         // $user->update($input);
         return redirect('/users')->with('success', 'New user has been Updated');
     }
