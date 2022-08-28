@@ -18,6 +18,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+           Role::create([
+            'role' => 'Admin'
+        ]);
+        Role::create([
+            'role' => 'User'
+        ]);
+        Role::create([
+            'role' => 'Creator'
+        ]);
          $faker = Faker::create();
     	foreach (range(1,500) as $index) {
             DB::table('users')->insert([
@@ -29,7 +38,8 @@ class DatabaseSeeder extends Seeder
                 'birth_place'=> $faker->country,
                 'gender'=>'male',
                 'address'=>$faker->address,
-                'password'=>$faker->password
+                'password'=>$faker->password,
+                'role_id'=>1
             ]);
             
         }
@@ -41,33 +51,25 @@ class DatabaseSeeder extends Seeder
                 'tagline' => "lorem ipsum",
                 'content' => $faker->text,
                 'price' => '10000',
-
+                'user_id'  => 2
             ]);
         }
-        $faker = Faker::create();
-    	 foreach (range(1,500) as $index) {
-             DB::table('users')->insert([
-                 'fname' => $faker->firstname,
-                 'lname' => $faker->lastname,
-                 'email' => $faker->email,
-                 'phone_number' => $faker->numerify('##########'),
-                 'dob' => $faker->date($format = 'D-m-y', $max = '2010',$min = '1980'),
-                 'birth_place'=> $faker->country,
-                 'gender'=>'male',
-                 'address'=>$faker->address,
-                 'password'=>$faker->password
-             ]);
-         }
+        // $faker = Faker::create();
+    	//  foreach (range(1,500) as $index) {
+        //      DB::table('users')->insert([
+        //          'fname' => $faker->firstname,
+        //          'lname' => $faker->lastname,
+        //          'email' => $faker->email,
+        //          'phone_number' => $faker->numerify('##########'),
+        //          'dob' => $faker->date($format = 'D-m-y', $max = '2010',$min = '1980'),
+        //          'birth_place'=> $faker->country,
+        //          'gender'=>'male',
+        //          'address'=>$faker->address,
+        //          'password'=>$faker->password
+        //      ]);
+        //  }
 
 
-        Role::create([
-            'role' => 'Admin'
-        ]);
-        Role::create([
-            'role' => 'User'
-        ]);
-        Role::create([
-            'role' => 'Creator'
-        ]);
+     
     }
 }
