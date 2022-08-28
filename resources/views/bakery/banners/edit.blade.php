@@ -13,12 +13,12 @@
 		<div class="card-body">
 			<div class="table-responsive">
 				<div class="col-lg-12">
-				<form action="/users/{{ $users->id }}" method="POST">
+				<form action="/users/{{ $banner->id }}" method="POST">
 					@method('put')
 					@csrf
-				                 <div class="form-group">
+				        <div class="form-group">
                         <label class="mb-1" for="detail"><strong>Detail</strong></label>
-                        <input type="text" class="form-control @error('detail') is-invalid @enderror" name="detail" id="detail" placeholder="" value="{{ old('detail') }}">
+                        <input type="text" class="form-control @error('detail') is-invalid @enderror" name="detail" id="detail" placeholder="" value="{{ old('detail',$baner->detail ) }}">
                         @error('detail')
                             <div class="invalid-feedback">
                                 {{ $message }}

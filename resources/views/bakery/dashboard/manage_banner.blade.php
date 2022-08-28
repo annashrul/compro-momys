@@ -43,16 +43,16 @@
 						</tr>
 					</thead>
 					<tbody>
-						@foreach ($user as $usr)
+						@foreach ($data as $d)
 						<tr>
 							<td><strong>{{ $loop->iteration }}</strong></td>
-							<td><div class="d-flex align-items-center"><span class="w-space-no">{{ $usr->detail }}</span></div></td>
-							<td>{{ $usr->image }}	</td>
+							<td><div class="d-flex align-items-center"><span class="w-space-no">{{ $d->detail }}</span></div></td>
+							<td>{{ $d->image }}	</td>
 
 							<td>
 								<div class="d-flex">
-									<a href="/banners/{{ $usr->id }}/edit" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fas fa-pencil-alt"></i></a>
-									<form action="/banners/{{ $usr->id }}" method="POST">
+									<a href="/banners/{{ $d->id }}/edit" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fas fa-pencil-alt"></i></a>
+									<form action="/banners/{{ $d->id }}" method="POST">
 										@method('delete')
 										@csrf
 										<button class="btn btn-danger shadow btn-xs sharp" onclick="return confirm('Are you sure?')"><i class="fa fa-trash"></i></button>
@@ -64,7 +64,7 @@
 					</tbody>
 				</table>
 				<div class="d-flex justify-content-right">
-					{!! $user->links() !!}
+					{!! $data->links() !!}
 				</div>
 			</div>
 		</div>

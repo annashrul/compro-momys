@@ -21,7 +21,7 @@ class BannerController extends Controller
         return view('bakery.dashboard.manage_banner', [
             'title' => $page_title,
             'users' => auth()->user(),
-            'user' => Banner::paginate(10)
+            'data' => Banner::paginate(10)
         ]);
     }
 
@@ -84,9 +84,14 @@ class BannerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Banner $banner)
     {
-        //
+           return view('bakery.banners.edit', [
+            'users' => auth()->user(),
+            'data' => $banner,
+            'banner' => Banner::all(),
+            'title' => 'Create Data User'
+        ]);
     }
 
     /**
