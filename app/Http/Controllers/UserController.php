@@ -91,11 +91,11 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-         return view('bakery.users.edit', [
+         return view('bakery.users.index', [
             'users' => auth()->user(),
             'user' => $user,
             'roles' => Role::all(),
-            'title' => 'Edit Data User'
+            'title' => 'Create Data User'
         ]);
     }
 

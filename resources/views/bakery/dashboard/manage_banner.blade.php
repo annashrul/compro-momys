@@ -16,7 +16,7 @@
 		<div class="col-lg-12">
 			<div class="row">
 				<div class="col-md-6">
-					<a href="/users/create" class="btn btn-primary m-4">Add New Banner</a>
+					<a href="/banner/create" class="btn btn-primary m-4">Add New Banner</a>
 				</div>
 			</div>
 			{{-- <div class="row">

@@ -30,9 +30,14 @@ class BannerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Banner $banner)
     {
-        //
+           return view('bakery.banners.index', [
+            'users' => auth()->user(),
+            'user' => $banner,
+            // 'roles' => Role::all(),
+            'title' => 'Create Data Banner'
+        ]);
     }
 
     /**
@@ -43,7 +48,22 @@ class BannerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         $validatedData = $request->validate([
+            'detail' => 'required|max:1000',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        $input = $request->all();
+        if ($image = $request->file('image')) {
+            $destinationPath = 'banner/';
+            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $profileImage);
+            $input['image'] = "$profileImage";
+        }
+
+        Banner::create($input);
+        return redirect('/banner')->with('success', 'New Banner has been Added');
+
     }
 
     /**
