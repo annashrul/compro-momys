@@ -65,6 +65,7 @@ class AuthController extends Controller
             'password_confirmed' => 'min:5'
         ]);
         $validatedData['password'] = Hash::make($validatedData['password']);
+        $validatedData['role_id'] = 2;
         User::create($validatedData);
         return redirect('/page-login')->with('success', 'Registration successfull, please login!');
     }
