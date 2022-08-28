@@ -112,3 +112,6 @@ Route::post('/page-login', [AuthController::class, 'authenticate']);
 Route::post('/page-logout', [AuthController::class, 'logout']);
 Route::post('/page-register', [AuthController::class, 'store']);
 Route::get('/page-register', [AuthController::class, 'page_register']);
+
+
+Route::get('/home', [\App\Http\Controllers\fo\HomeController::class, 'index']);
