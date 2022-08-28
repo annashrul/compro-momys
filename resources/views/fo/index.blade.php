@@ -2,7 +2,7 @@
 $urlCss = 'fo/css/';
 $urlJs = 'fo/js/';
 $logo="images/logo-text-transparent.png";
-$menu=["shop",'location','local delivery or pickup','grocery stores'];
+$menu=["Home",'Shop','Location Store','Profile'];
 
 ?>
         <!doctype html>
@@ -123,7 +123,7 @@ $menu=["shop",'location','local delivery or pickup','grocery stores'];
                         </div>
                         <div class="col-12 col-xs-12 col-md-4">
                             <p class="fw-500">290g</p>
-                            <button class="btn-add">Add</button>
+                            <button class="btn-add">Order</button>
                         </div>
                     </div>
                 </div>
