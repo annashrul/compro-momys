@@ -16,7 +16,7 @@ class UserController extends Controller
      */
     public function index()
     {
-          $page_title = 'User Management';
+        $page_title = 'User Management';
         $page_description = 'Some description for the page';
         $action = __FUNCTION__;
         return view('bakery.dashboard.manage_user', [

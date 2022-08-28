@@ -19,10 +19,10 @@
 					<a href="/users/create" class="btn btn-primary m-4">Add New User</a>
 				</div>
 			</div>
-			<div class="row">
+			{{-- <div class="row">
 				<div class="col-md-3">
 					<input type="text" class="form-control" placeholder="search" name="search" id="search" >       
-				</div>
+				</div> --}}
 			</div>
 		</div>
 		@if (session()->has('success'))
