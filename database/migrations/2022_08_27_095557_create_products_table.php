@@ -18,7 +18,8 @@ class CreateProductsTable extends Migration
             $table->string('title');
             $table->string('tagline');
             $table->text('content');
-            $table->integerd('price');
+            $table->integer('price');
+            $table->foreignId('user_id')->default(1);
             $table->timestamps();
         });
     }
