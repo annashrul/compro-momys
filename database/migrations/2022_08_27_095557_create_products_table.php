@@ -19,7 +19,7 @@ class CreateProductsTable extends Migration
             $table->string('tagline');
             $table->text('content');
             $table->integer('price');
-            $table->foreignId('user_id')->default(1);
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->timestamps();
         });
     }
