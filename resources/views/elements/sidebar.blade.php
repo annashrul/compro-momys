@@ -48,6 +48,9 @@
 				 <ul aria-expanded="false">
 					<li><a href="{!! url('/users'); !!}">User Data</a></li>
 				</ul>
+				<ul aria-expanded="false">
+					<li><a href="{!! url('/banner'); !!}">Banner Data</a></li>
+				</ul>
             </li>
 			@endcan
 			{{-- <li class="nav-label">Apps</li>

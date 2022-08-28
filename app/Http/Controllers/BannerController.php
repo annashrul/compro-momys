@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Banner;
+
 
 class BannerController extends Controller
 {
@@ -13,7 +15,14 @@ class BannerController extends Controller
      */
     public function index()
     {
-        //
+         $page_title = 'Banner Management';
+        $page_description = 'Some description for the page';
+        $action = __FUNCTION__;
+        return view('bakery.dashboard.manage_banner', [
+            'title' => $page_title,
+            'users' => auth()->user(),
+            'user' => Banner::paginate(10)
+        ]);
     }
 
     /**
