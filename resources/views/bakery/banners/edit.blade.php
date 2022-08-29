@@ -11,14 +11,17 @@
 		</div>
 
 		<div class="card-body">
+			<div class="card-body" style="align-content: center;width:100%;">
+                <img id="imgPreview" src="{{ asset('banner/'.  $data->image ) }}" alt="" style="width: 90%;height:400px;border:1px;border-radius:10px;  display: block;margin-left: auto;margin-right: auto;" >
+            </div>
 			<div class="table-responsive">
 				<div class="col-lg-12">
-				<form action="/users/{{ $banner->id }}" method="POST">
+				<form action="/banners/{{ $data->id }}" method="POST" enctype="multipart/form-data">
 					@method('put')
 					@csrf
 				        <div class="form-group">
                         <label class="mb-1" for="detail"><strong>Detail</strong></label>
-                        <input type="text" class="form-control @error('detail') is-invalid @enderror" name="detail" id="detail" placeholder="" value="{{ old('detail',$baner->detail ) }}">
+                        <input type="text" class="form-control @error('detail') is-invalid @enderror" name="detail" id="detail" placeholder="" value="{{ old('detail',$data->detail ) }}">
                         @error('detail')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -55,5 +58,20 @@
 				$(this).addClass("active");
 		  	});
 		}); 
+		$(document).ready(()=>{
+		$('#image').change(function(){
+			const file = this.files[0];
+			console.log(file);
+			if (file){
+			let reader = new FileReader();
+			reader.onload = function(event){
+				console.log(event.target.result);
+				$('#imgPreview').attr('src', event.target.result);
+			}
+			reader.readAsDataURL(file);
+			}
+		});
+		});
+
 	</script>
 @endsection

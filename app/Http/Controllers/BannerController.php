@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Banner;
+use Illuminate\Support\Facades\File;
 
 
 class BannerController extends Controller
@@ -101,9 +102,28 @@ class BannerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Banner $banner)
     {
-        //
+        $validatedData = $request->validate([
+            'detail' => 'required|max:1000',
+        ]);
+        
+
+        $input = $request->except(['_token', '_method' ]);
+      
+        if ($image = $request->file('image')) {
+            $destinationPath = 'banner/';
+            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $profileImage);
+             File::delete($destinationPath. $banner->image);
+            // unlink("banner/".$banner->image);
+            $input['image'] = "$profileImage";
+        }else{
+            unset($input['image']);
+        }
+
+        Banner::where('id', $banner->id)->update($input);
+        return redirect('/banners')->with('success', 'Banner Edit Success');
     }
 
     /**
@@ -112,8 +132,15 @@ class BannerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Banner $banner)
     {
-        //
+        if($banner->image){
+            File::delete('banner/'. $banner->image);
+
+        }
+
+        Banner::destroy($banner->id);
+        return redirect('/banners')->with('success', 'Banner Delete Success');
+
     }
 }

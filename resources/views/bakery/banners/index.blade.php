@@ -12,8 +12,8 @@
 			<h4 class="card-title">{{$title}}</h4>
 		</div>
 		<div class="card-body">
-            <div class="card-body">
-                <img id="imgPreview" alt="" style="width: 90%;height:400px;border:1px;border-radius:10px; margin:auto;" >
+            <div class="card-body" style="align-content: center;width:100%;">
+                <img id="imgPreview" alt="" style="width: 90%;height:400px;border:1px;border-radius:10px;  display: block;margin-left: auto;margin-right: auto;" >
             </div>
 			<div class="table-responsive">
 				<div class="col-lg-12">
