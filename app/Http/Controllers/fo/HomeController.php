@@ -7,6 +7,18 @@ use App\Http\Controllers\Controller;
 class HomeController extends Controller
 {
     public function index(){
+        $data['banner']=[
+            [
+                "title"=>"INTRODUCING ROCKY ROAD",
+                "img"=>"https://wallpaperaccess.com/full/109672.jpg",
+                "desc"=>"The perfect summertime snack!"
+            ],
+            [
+                "title"=>"INTRODUCING ROCKY ROAD",
+                "img"=>"https://wallpapercave.com/wp/GoYcMqd.jpg",
+                "desc"=>"The perfect summertime snack!"
+            ]
+        ];
         $data['card'] = [
             [
                 "title"=>"THE SWEETEST GIFT",

@@ -91,11 +91,13 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
+
         return view('bakery.users.edit', [
+
             'users' => auth()->user(),
             'user' => $user,
             'roles' => Role::all(),
-            'title' => 'Edit Data User'
+            'title' => 'Create Data User'
         ]);
     }
 
@@ -127,7 +129,6 @@ class UserController extends Controller
 
         $validatedData = $request->validate($rules);
 
-
         if ($image = $request->file('image')) {
             $destinationPath = 'image/';
             $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
@@ -136,9 +137,6 @@ class UserController extends Controller
         } else {
             unset($validatedData['image']);
         }
-
-
-        User::where('id', $user->id)->update($validatedData);
         return redirect('/users')->with('success', 'New user has been Updated');
     }
 

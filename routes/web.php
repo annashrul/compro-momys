@@ -7,6 +7,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\BannerController;
+
 
 
 /*
@@ -24,6 +26,17 @@ use App\Http\Controllers\ProductController;
 //     return view('welcome');
 // });
 
+Route::resource('/users', UserController::class)->middleware('admin');
+Route::resource('/products', ProductController::class)->middleware('admin');
+Route::resource('/my-wallets/management-data', RoleController::class)->middleware('admin')->parameters([
+    'management-data' => 'user:id',
+]);
+Route::get('/app-profile',  [AdminController::class, 'app_profile']);
+Route::resource('/app-profile/edit-profile', ProfileController::class)->parameters([
+    'edit-profile' => 'user:id',
+]);
+Route::resource('/banners', BannerController::class)->middleware('admin');
+
 
 Route::get('/',             [AdminController::class, 'dashboard_1'])->middleware('auth');
 Route::get('/index',        [AdminController::class, 'dashboard_1']);
@@ -34,6 +47,7 @@ Route::get('/market-capital', [AdminController::class, 'market_capital']);
 Route::get('/tranasactions', [AdminController::class, 'tranasactions']);
 Route::get('/my-wallets',   [AdminController::class, 'my_wallets'])->middleware('admin');
 
+<<<<<<< HEAD
 Route::resource('/users', UserController::class)->middleware('admin');
 Route::resource('/products', ProductController::class)->middleware('admin')->parameters([
     'products' => 'products:id'
@@ -42,11 +56,9 @@ Route::resource('/products', ProductController::class)->middleware('admin')->par
 Route::resource('/my-wallets/management-data', RoleController::class)->middleware('admin')->parameters([
     'management-data' => 'user:id',
 ]);
+=======
+>>>>>>> 82498457b69d9b7d3366745e313031683df06fe2
 
-Route::get('/app-profile',  [AdminController::class, 'app_profile']);
-Route::resource('/app-profile/edit-profile', ProfileController::class)->parameters([
-    'edit-profile' => 'user:id',
-]);
 Route::get('/post-details', [AdminController::class, 'post_details']);
 Route::get('/page-chat',    [AdminController::class, 'page_chat']);
 Route::get('/project-list', [AdminController::class, 'project_list']);

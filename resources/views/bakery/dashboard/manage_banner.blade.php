@@ -16,14 +16,14 @@
 		<div class="col-lg-12">
 			<div class="row">
 				<div class="col-md-6">
-					<a href="/users/create" class="btn btn-primary m-4">Add New User</a>
+					<a href="/banners/create" class="btn btn-primary m-4">Add New Banner</a>
 				</div>
 			</div>
-			<div class="row">
+			{{-- <div class="row">
 				<div class="col-md-3">
 					<input type="text" class="form-control" placeholder="search" name="search" id="search" >       
 				</div>
-			</div>
+			</div> --}}
 		</div>
 		@if (session()->has('success'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -37,26 +37,22 @@
 					<thead>
 						<tr>
 							<th><strong>Key</strong></th>
-							<th><strong>NAME</strong></th>
-							<th><strong>Email</strong></th>
-							<th><strong>Phone Number</strong></th>
-							<th><strong>Role</strong></th>
-							<th><strong>Action</strong></th>
+							<th><strong>Detail</strong></th>
+							<th><strong>Image</strong></th>
+							
 						</tr>
 					</thead>
 					<tbody>
-						@foreach ($user as $usr)
+						@foreach ($data as $d)
 						<tr>
 							<td><strong>{{ $loop->iteration }}</strong></td>
-							<td><div class="d-flex align-items-center"><span class="w-space-no">{{ $usr->fname }}</span></div></td>
-							<td>{{ $usr->email }}	</td>
-							<td>{{ $usr->phone_number }}	</td>
+							<td><div class="d-flex align-items-center"><span class="w-space-no">{{ $d->detail }}</span></div></td>
+							<td>{{ $d->image }}	</td>
 
-							<td>{{ $usr->Role->role }}</td>
 							<td>
 								<div class="d-flex">
-									<a href="/users/{{ $usr->id }}/edit" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fas fa-pencil-alt"></i></a>
-									<form action="/my-wallets/management-data/{{ $usr->id }}" method="POST">
+									<a href="/banners/{{ $d->id }}/edit" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fas fa-pencil-alt"></i></a>
+									<form action="/banners/{{ $d->id }}" method="POST">
 										@method('delete')
 										@csrf
 										<button class="btn btn-danger shadow btn-xs sharp" onclick="return confirm('Are you sure?')"><i class="fa fa-trash"></i></button>
@@ -68,7 +64,7 @@
 					</tbody>
 				</table>
 				<div class="d-flex justify-content-right">
-					{!! $user->links() !!}
+					{!! $data->links() !!}
 				</div>
 			</div>
 		</div>
