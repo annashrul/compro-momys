@@ -74,11 +74,11 @@ $menu=["Home",'Shop','Location Store','Profile'];
                                     <i class="bx bx-user fs-30"></i>
                                 </a>
                             </li>
-                            <li class="nav-item">
+                            {{-- <li class="nav-item">
                                 <a href="#" class="nav-link">
                                     <i class="bx bx-cart fs-30"></i>
                                 </a>
-                            </li>
+                            </li> --}}
                         </ul>
                     </div>
                 </nav>
