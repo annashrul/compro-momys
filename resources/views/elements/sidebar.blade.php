@@ -45,11 +45,15 @@
                 <ul aria-expanded="false">
 					<li><a href="{!! url('/my-wallets'); !!}">Role User</a></li>
 				</ul>
-				 <ul aria-expanded="false">
+				<ul aria-expanded="false">
 					<li><a href="{!! url('/users'); !!}">User Data</a></li>
 				</ul>
 				<ul aria-expanded="false">
+<<<<<<< HEAD
+					<li><a href="{!! url('/products'); !!}">Product Data</a></li>
+=======
 					<li><a href="{!! url('/banners'); !!}">Banner Data</a></li>
+>>>>>>> 82498457b69d9b7d3366745e313031683df06fe2
 				</ul>
             </li>
 			@endcan

@@ -32,7 +32,17 @@
         @foreach(config('dz.public.global.css') as $style)
             <link href="{{ asset($style) }}" rel="stylesheet" type="text/css"/>
         @endforeach
-    @endif  
+    @endif 
+    
+    {{-- Trix Editor --}}
+    <link rel="stylesheet" type="text/css" href="/css/trix.css">
+    <script type="text/javascript" src="/js/trix.js"></script>
+
+    <style>
+        trix-toolbar [data-trix-button-group="file-tools"]{
+            display: none;
+        }
+    </style>
     
 </head>
 

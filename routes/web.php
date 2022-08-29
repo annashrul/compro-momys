@@ -47,6 +47,17 @@ Route::get('/market-capital', [AdminController::class, 'market_capital']);
 Route::get('/tranasactions', [AdminController::class, 'tranasactions']);
 Route::get('/my-wallets',   [AdminController::class, 'my_wallets'])->middleware('admin');
 
+<<<<<<< HEAD
+Route::resource('/users', UserController::class)->middleware('admin');
+Route::resource('/products', ProductController::class)->middleware('admin')->parameters([
+    'products' => 'products:id'
+]);
+
+Route::resource('/my-wallets/management-data', RoleController::class)->middleware('admin')->parameters([
+    'management-data' => 'user:id',
+]);
+=======
+>>>>>>> 82498457b69d9b7d3366745e313031683df06fe2
 
 Route::get('/post-details', [AdminController::class, 'post_details']);
 Route::get('/page-chat',    [AdminController::class, 'page_chat']);
