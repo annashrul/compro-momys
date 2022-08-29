@@ -45,8 +45,11 @@
                 <ul aria-expanded="false">
 					<li><a href="{!! url('/my-wallets'); !!}">Role User</a></li>
 				</ul>
-				 <ul aria-expanded="false">
+				<ul aria-expanded="false">
 					<li><a href="{!! url('/users'); !!}">User Data</a></li>
+				</ul>
+				<ul aria-expanded="false">
+					<li><a href="{!! url('/products'); !!}">Product Data</a></li>
 				</ul>
             </li>
 			@endcan

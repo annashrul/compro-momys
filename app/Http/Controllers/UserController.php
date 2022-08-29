@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Role;
-
+use Illuminate\Contracts\Support\ValidatedData;
 
 class UserController extends Controller
 {
@@ -16,7 +16,7 @@ class UserController extends Controller
      */
     public function index()
     {
-          $page_title = 'User Management';
+        $page_title = 'User Management';
         $page_description = 'Some description for the page';
         $action = __FUNCTION__;
         return view('bakery.dashboard.manage_user', [
@@ -33,7 +33,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('bakery.users.index',[
+        return view('bakery.users.index', [
             'users' => auth()->user(),
             'roles' => Role::all(),
             'title' => "Add New User"
@@ -48,7 +48,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-         $validatedData = $request->validate([
+        $validatedData = $request->validate([
             'fname' => 'required|max:255',
             'lname' => 'required|max:255',
             'email' => 'required|email:dns|unique:users',
@@ -91,7 +91,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-         return view('bakery.users.edit', [
+        return view('bakery.users.edit', [
             'users' => auth()->user(),
             'user' => $user,
             'roles' => Role::all(),
@@ -108,30 +108,37 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-          $validatedData = $request->validate([
+        $rules = [
             'fname' => 'required|max:255',
             'lname' => 'required|max:255',
-            'email' => 'required|email:dns|unique:users',
-            'phone_number' => 'required|max:13|unique:users',
-            'dob' => 'required|max:10|min:10',
+            'dob' => 'required',
             'birth_place' => 'required|max:255',
+            'role_id' => 'required',
             'address' => 'required|max:255',
-            'password' => 'required|min:5|max:255'
+            'password' => ''
 
-        ]);
-        $input = $request->all();
-  
+        ];
+        if ($request->email != $user->email) {
+            $rules['email'] = 'required|email:dns|unique:users';
+        }
+        if ($request->phone_number == $user->phone_number) {
+            $rules['phone_number'] = 'required|max:13|unique:users';
+        }
+
+        $validatedData = $request->validate($rules);
+
+
         if ($image = $request->file('image')) {
             $destinationPath = 'image/';
             $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
             $image->move($destinationPath, $profileImage);
-            $input['image'] = "$profileImage";
-        }else{
-            unset($input['image']);
+            $validatedData['image'] = "$profileImage";
+        } else {
+            unset($validatedData['image']);
         }
-          
-        
-        User::where('id', $user->id)->update($input);
+
+
+        User::where('id', $user->id)->update($validatedData);
         return redirect('/users')->with('success', 'New user has been Updated');
     }
 
@@ -143,6 +150,5 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        
     }
 }

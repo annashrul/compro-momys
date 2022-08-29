@@ -35,8 +35,10 @@ Route::get('/tranasactions', [AdminController::class, 'tranasactions']);
 Route::get('/my-wallets',   [AdminController::class, 'my_wallets'])->middleware('admin');
 
 Route::resource('/users', UserController::class)->middleware('admin');
-Route::resource('/products', ProductController::class)->middleware('admin');
- 
+Route::resource('/products', ProductController::class)->middleware('admin')->parameters([
+    'products' => 'products:id'
+]);
+
 Route::resource('/my-wallets/management-data', RoleController::class)->middleware('admin')->parameters([
     'management-data' => 'user:id',
 ]);

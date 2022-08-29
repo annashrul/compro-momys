@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Products;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -13,7 +14,11 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        return view('bakery.dashboard.manage_product', [
+            'title' => 'Product Management',
+            'users' => auth()->user(),
+            'product' => Products::paginate(10)
+        ]);
     }
 
     /**
@@ -23,7 +28,10 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return view('bakery.products.index', [
+            'users' => auth()->user(),
+            'title' => "Add New Product"
+        ]);
     }
 
     /**
@@ -34,7 +42,16 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required|max:255',
+            'tagline' => 'required|max:255',
+            'price' => 'required',
+            'content' => 'required'
+        ]);
+        $input = $request->all();
+        $input['user_id'] = auth()->user()->id;
+        Products::create($input);
+        return redirect('/products')->with('success', 'New user has been Added');
     }
 
     /**
@@ -45,7 +62,6 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
     }
 
     /**
@@ -54,9 +70,13 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Products $products)
     {
-        //
+        return view('bakery.products.edit', [
+            'users' => auth()->user(),
+            'product' => $products,
+            'title' => 'Edit Data Product'
+        ]);
     }
 
     /**
@@ -66,9 +86,19 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Products $products)
     {
-        //
+        $rules = $request->validate([
+            'title' => 'required|max:255',
+            'tagline' => 'required|max:255',
+            'price' => 'required',
+            'content' => 'required'
+        ]);
+        $validatedData = $rules;
+        $validatedData['user_id'] = auth()->user()->id;
+
+        Products::where('id', $products->id)->update($validatedData);
+        return redirect('/products')->with('success', 'Data product has been updated');
     }
 
     /**
