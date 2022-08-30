@@ -43,7 +43,7 @@
     background-color: #286389;
     color: white;
     font-weight: bold;
-    border-radius: 10px;
+    border-radius: 4px;
     /*width: 100%;*/
 }
 
@@ -134,7 +134,7 @@ img {
     color: grey;
 }
 .default-btn {
-    border-radius: 10px;
+    border-radius: 4px;
     display: inline-block;
     padding: 12px 32px;
     color: #fff;
@@ -184,6 +184,9 @@ img {
     padding: 0;
     width: 100%;
     height: auto;
+}
+main-nav nav .navbar-nav .nav-item a:hover, .main-nav nav .navbar-nav .nav-item a:focus, .main-nav nav .navbar-nav .nav-item a.active{
+    color: #FFD367!important;
 }
 .main-nav .navbar {
     padding-left: 0;
@@ -569,8 +572,8 @@ img {
     background-color: #fff;
     /*position: relative;*/
     z-index: 1;
-    padding: 30px;
-    border-radius: 15px;
+    padding: 20px;
+    border-radius: 7px;
     margin-bottom: 30px;
     /*-webkit-box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);*/
     /*box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);*/

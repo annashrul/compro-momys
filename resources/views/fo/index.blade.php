@@ -90,11 +90,10 @@ $menu=["Home",'Shop','Location Store','Profile'];
 {{-- *************** BANNER **************--}}
 <div class="banner-area-two owl-carousel owl-theme" style="width:100%;">
     <?php foreach ($banner as $row):?>
-    <div class="container-fluid p-0" style="position: relative;height:600px;">
-        <img style="object-fit: cover;" src="<?=$row['img']?>" alt="Images" class="banner-img">
+    <div class="container-fluid p-0" style="position: relative;height:auto;">
+        <img style="object-fit: cover;" src="<?=$row['image']?>" onerror="this.onerror=null;this.src='https://wallpaperaccess.com/full/109672.jpg';" alt="Images" class="banner-img">
         <div  class="wrap-text-banner">
-            <b class="fs-50 fw-bold"><?=$row['title']?></b><br/>
-            <b><?=$row['desc']?></b><br/><br/>
+            <b><?=substr($row['detail'],0,30)?></b><br/><br/>
             <a href="#" class="default-btn btn-bg-two">SEND BAKERYS</a>
         </div>
     </div>
@@ -109,26 +108,25 @@ $menu=["Home",'Shop','Location Store','Profile'];
             <br/><a href="#" class="default-btn btn-bg-two">SHOP ALL BAKERYS</a>
         </div>
         <div class="row pt-45">
-           <?php for($i=0;$i<8;$i++): ?>
+           <?php foreach($product as $i=>$row): ?>
             <div class="col-6 col-xs-6 col-lg-3 col-sm-6">
                 <div class="product-card">
                     <div class="product-item-img">
-                        <img src="images/produk/1.png" alt="blog-bg-image" />
+                        <img src="<?=$row['images'][0]?>"  onerror="this.onerror=null;this.src='images/produk/1.png';" alt="blog-bg-image" />
                         <p style="display: <?=$i%2==0?'block':'none'?>" class="tag">NEW</p>
                     </div>
                     <div class="row wrap-content-product">
                         <div class="col-12 col-xs-12 col-md-8">
-                            <p class="fw-500">$600</p>
-                            <p class="fw-bold">Whole Graint Spelt</p>
+                            <p class="fw-bold"><?=$row['title']?></p>
                         </div>
                         <div class="col-12 col-xs-12 col-md-4">
-                            <p class="fw-500">290g</p>
-                            <button class="btn-add">Order</button>
+                            <p class="fw-500" ><?=$row['price']?></p>
+                            <button class="btn-add" onclick="showDetail('<?=$i?>')">Order</button>
                         </div>
                     </div>
                 </div>
             </div>
-           <?php endfor; ?>
+           <?php endforeach; ?>
         </div>
     </div>
 </div>
@@ -212,11 +210,87 @@ $menu=["Home",'Shop','Location Store','Profile'];
 
     </div>
 </footer>
+<div class="modal fade" id="modalDetailProduct" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="titleProduct">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body" id="resultProduct">
 
+            </div>
+            <div class="modal-footer" style="">
+                <button type="button" class="btn btn-primary default-btn btn-bg-two" onclick="sendWa()">Order</button>
+            </div>
+        </div>
+    </div>
+</div>
 <script src="<?=$urlJs?>jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script src="<?=$urlJs?>wow.min.js"></script>
 <script src="<?=$urlJs?>owl.carousel.min.js"></script>
 <script src="<?=$urlJs?>meanmenu.js"></script>
 <script src="<?=$urlJs?>custom.js"></script>
+
+<script>
+    let datas = <?=json_encode($product)?>;
+    let idxImagesActive=0;
+    let idxProduct=0;
+    function showDetail(index){
+        idxProduct=index;
+        $("#modalDetailProduct").modal("show");
+        let res=datas['data'][index];
+        $("#titleProduct").html(res.title);
+        let html=`<img id="main_${res.id}" src="${res.images[0]}"/>`;
+        if(res.images.length>1){
+            html+='<div class="row" style="margin-top: 10px">';
+            res.images.forEach((row,key)=>{
+                html+='<div class="col-md-2"  style="cursor: pointer" onclick="setImages('+key+')">';
+                html+='<img src="'+row+'" id="row_'+key+'" style="width: 100%;height: 100%;border-radius: 10px"/>';
+                html+='</div>';
+            });
+            html+='</div>';
+            html+='<hr/>';
+        }
+        html+='<div style="justify-content: space-between;display: flex">';
+        html+='<h4>'+res.tagline+'</h4>'
+        html+='<h4>Rp. '+res.price+',-</h4>'
+        html+='</div>';
+        html+='<p>'+res.content+'</p>';
+        $("#resultProduct").html(html);
+        setTimeout(function(){
+            setIsActiveImages(0,true);
+        },200)
+    }
+
+    function setImages(key){
+        setIsActiveImages(idxImagesActive,false);
+        idxImagesActive=key;
+        let res=datas['data'][idxProduct];
+        let newImg=res["images"][key];
+        $(`#main_${res.id}`).attr('src',newImg);
+        setTimeout(function(){
+            setIsActiveImages(key,true);
+        },200)
+    }
+
+    function setIsActiveImages(idx,status){
+        $(`#row_${idx}`).css({"border":status?"2px solid #286389":"none"})
+    }
+
+    function sendWa(){
+        const enter="%0a";
+        let res=datas['data'][idxProduct];
+        let message=`Hallo admin.. ${enter}saya pesan *${res.title} - Rp. ${res.price},-* yaaaaah${enter}`;
+        message+="Terimakasih ...";
+        window.open("https://api.whatsapp.com/send/?phone=6281223165037&text="+message,"_blank")
+
+    }
+</script>
+
 </body>
 </html>
