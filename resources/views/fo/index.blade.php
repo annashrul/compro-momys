@@ -288,8 +288,7 @@ $menu=["Home",'Shop','Location Store','Profile'];
     function sendWa(){
         const enter="%0a";
         let res=datas['data'][idxProduct];
-        let message=`Hallo admin.. ${enter}saya pesan *${res.title} - Rp. ${res.price},-* yaaaaah${enter}`;
-        message+="Terimakasih ...";
+        let message=`Hallo admin.. ${enter}saya pesan *${res.title} - Rp. ${res.price},-* yaaaaah${enter}Terimakasih ...`;
         window.open("https://api.whatsapp.com/send/?phone=6281223165037&text="+message,"_blank")
     }
 </script>
