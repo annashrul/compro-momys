@@ -240,11 +240,14 @@ $menu=["Home",'Shop','Location Store','Profile'];
     let datas = <?=json_encode($product)?>;
     let idxImagesActive=0;
     let idxProduct=0;
+    function setId(id){
+        return $(`#${id}`);
+    }
     function showDetail(index){
         idxProduct=index;
-        $("#modalDetailProduct").modal("show");
         let res=datas['data'][index];
-        $("#titleProduct").html(res.title);
+        setId('modalDetailProduct').modal("show");
+        setId('titleProduct').html(res.title);
         let html=`<img id="main_${res.id}" src="${res.images[0]}"/>`;
         if(res.images.length>1){
             html+='<div class="row" style="margin-top: 10px">';
@@ -257,11 +260,11 @@ $menu=["Home",'Shop','Location Store','Profile'];
             html+='<hr/>';
         }
         html+='<div style="justify-content: space-between;display: flex">';
-        html+='<h4>'+res.tagline+'</h4>'
-        html+='<h4>Rp. '+res.price+',-</h4>'
+        html+='<h4>'+res.tagline+'</h4>';
+        html+='<h4>Rp. '+res.price+',-</h4>';
         html+='</div>';
         html+='<p>'+res.content+'</p>';
-        $("#resultProduct").html(html);
+        setId('resultProduct').html(html);
         setTimeout(function(){
             setIsActiveImages(0,true);
         },200)
@@ -272,14 +275,14 @@ $menu=["Home",'Shop','Location Store','Profile'];
         idxImagesActive=key;
         let res=datas['data'][idxProduct];
         let newImg=res["images"][key];
-        $(`#main_${res.id}`).attr('src',newImg);
+        setId(`main_${res.id}`).attr('src',newImg);
         setTimeout(function(){
             setIsActiveImages(key,true);
         },200)
     }
 
     function setIsActiveImages(idx,status){
-        $(`#row_${idx}`).css({"border":status?"2px solid #286389":"none"})
+        setId(`row_${idx}`).css({"border":status?"2px solid #286389":"none"})
     }
 
     function sendWa(){
@@ -288,7 +291,6 @@ $menu=["Home",'Shop','Location Store','Profile'];
         let message=`Hallo admin.. ${enter}saya pesan *${res.title} - Rp. ${res.price},-* yaaaaah${enter}`;
         message+="Terimakasih ...";
         window.open("https://api.whatsapp.com/send/?phone=6281223165037&text="+message,"_blank")
-
     }
 </script>
 
