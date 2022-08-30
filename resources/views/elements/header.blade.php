@@ -689,7 +689,7 @@
                     <li class="nav-item dropdown header-profile">
                         <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown">
 							@if ($users->image)
-                            <img src="{{ asset('storage/'.$users->image) }}" width="20" alt=""/>
+                            <img src="/image/{{ $users->image }}" width="20" alt=""/>
 							@else
                             <img src="/images/profile.png" width="20" alt=""/>
 							@endif

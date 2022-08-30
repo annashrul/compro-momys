@@ -56,7 +56,7 @@
 							<td>
 								<div class="d-flex">
 									<a href="/users/{{ $usr->id }}/edit" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fas fa-pencil-alt"></i></a>
-									<form action="/my-wallets/management-data/{{ $usr->id }}" method="POST">
+									<form action="/users/{{ $usr->id }}" method="POST">
 										@method('delete')
 										@csrf
 										<button class="btn btn-danger shadow btn-xs sharp" onclick="return confirm('Are you sure?')"><i class="fa fa-trash"></i></button>

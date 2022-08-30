@@ -26,7 +26,9 @@ use App\Http\Controllers\BannerController;
 //     return view('welcome');
 // });
 
-Route::resource('/users', UserController::class)->middleware('admin');
+Route::resource('/users', UserController::class)->middleware('admin')->parameters([
+    'users' => 'user:id'
+]);
 Route::resource('/my-wallets/management-data', RoleController::class)->middleware('admin')->parameters([
     'management-data' => 'user:id',
 ]);

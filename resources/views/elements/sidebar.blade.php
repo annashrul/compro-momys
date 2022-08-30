@@ -6,7 +6,7 @@
 		<div class="main-profile">
 			<div class="image-bx">
 				@if ($users->image)
-				<img src="{{ asset('storage/'.  $users->image ) }}" alt="">
+				<img src="/image/{{ $users->image }}" alt="">
 				@else
 				<img src="/images/profile.png" alt="">
 				@endif

@@ -13,7 +13,7 @@
 		<div class="card-body">
 			<div class="table-responsive">
 				<div class="col-lg-12">
-				<form action="/users/{{ $users->id }}" method="POST" enctype="multipart/form-data">
+				<form action="/users/{{ $user->id }}" method="POST" enctype="multipart/form-data">
 					@method('put')
 					@csrf
 					 <div class="form-group">
@@ -78,10 +78,14 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label class="mb-1" for="role"><strong>Role User</strong></label>
-                        <select class="form-select" name="role_id" id="role" value="{{old('role', $user->role)}}">
+                        <label class="mb-1" for="role_id"><strong>Role User</strong></label>
+                        <select class="form-select" name="role_id" id="role_id">
                         @foreach ($roles as $role)
+                        @if (old('role_id', $user->role_id) == $role->id)
+                        <option value="{{ $role->id }}" selected>{{ $role->role }}</option>
+                        @else
                         <option value="{{ $role->id }}">{{ $role->role }}</option>
+                        @endif
                         @endforeach
                         </select>
                     </div>
@@ -105,7 +109,7 @@
                     </div>
 					<div class="form-group">
                         <label class="mb-1" for="image"><strong>Image</strong></label>
-                        <input type="file" class="form-file-input  @error('image') is-invalid @enderror" name="image" id="imae" placeholder="Image">
+                        <input type="file" class="form-file-input  @error('image') is-invalid @enderror" name="image" id="image" placeholder="Image">
                         @error('image')
                             <div class="invalid-feedback">
                                 {{ $message }}

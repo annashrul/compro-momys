@@ -45,7 +45,7 @@
 								<div class="d-flex">
 									<a href="/products/{{ $prd->id }}/edit" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fas fa-pencil-alt"></i></a>
 									<a href="/products/{{ $prd->id }}" class="btn btn-success shadow btn-xs sharp me-1"><i class="fas fa-eye"></i></a>
-									<form action="/my-wallets/management-data/{{ $prd->id }}" method="POST">
+									<form action="/products/{{ $prd->id }}" method="POST">
 										@method('delete')
 										@csrf
 										<button class="btn btn-danger shadow btn-xs sharp" onclick="return confirm('Are you sure?')"><i class="fa fa-trash"></i></button>

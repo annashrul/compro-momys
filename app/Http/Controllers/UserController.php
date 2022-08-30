@@ -55,20 +55,19 @@ class UserController extends Controller
             'phone_number' => 'required|max:13|unique:users',
             'dob' => 'required|max:10|min:10',
             'birth_place' => 'required|max:255',
+            'role_id' => 'required',
             'address' => 'required|max:255',
             'password' => 'required|min:5|max:255',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
-
-        $input = $request->all();
 
         if ($image = $request->file('image')) {
             $destinationPath = 'image/';
             $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
             $image->move($destinationPath, $profileImage);
-            $input['image'] = "$profileImage";
+            $validatedData['image'] = "$profileImage";
         }
-        User::create($input);
+        User::create($validatedData);
         return redirect('/users')->with('success', 'New user has been Added');
     }
 
@@ -105,7 +104,7 @@ class UserController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, User $user)
@@ -113,17 +112,18 @@ class UserController extends Controller
         $rules = [
             'fname' => 'required|max:255',
             'lname' => 'required|max:255',
-            'dob' => 'required',
+            'dob' => 'required|max:10|min:10',
             'birth_place' => 'required|max:255',
             'role_id' => 'required',
             'address' => 'required|max:255',
-            'password' => ''
+            'password' => 'required|min:5|max:255',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
 
         ];
         if ($request->email != $user->email) {
             $rules['email'] = 'required|email:dns|unique:users';
         }
-        if ($request->phone_number == $user->phone_number) {
+        if ($request->phone_number != $user->phone_number) {
             $rules['phone_number'] = 'required|max:13|unique:users';
         }
 
@@ -137,6 +137,7 @@ class UserController extends Controller
         } else {
             unset($validatedData['image']);
         }
+        User::where('id', $user->id)->update($validatedData);
         return redirect('/users')->with('success', 'New user has been Updated');
     }
 
@@ -146,7 +147,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
+        User::destroy($user->id);
+        return redirect('/users')->with('success', 'User has been Deleted');
     }
 }

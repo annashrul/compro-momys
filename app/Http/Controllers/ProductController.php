@@ -107,8 +107,9 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Products $products)
     {
-        //
+        Products::destroy($products->id);
+        return redirect('/products')->with('success', 'Data product has been deleted');
     }
 }

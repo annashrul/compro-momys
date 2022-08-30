@@ -78,8 +78,8 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label class="mb-1" for="role"><strong>Role User</strong></label>
-                        <select class="form-select" name="role_id" id="role">
+                        <label class="mb-1" for="role_id"><strong>Role User</strong></label>
+                        <select class="form-select" name="role_id" id="role_id">
                         @foreach ($roles as $role)
                         <option value="{{ $role->id }}">{{ $role->role }}</option>
                         @endforeach
