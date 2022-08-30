@@ -32,13 +32,11 @@ class HomeController extends Controller
             ["0"=>["CORPORATE GIFTING","FAQ","GET IN TOUCH","ABOUT","PARTIES AND EVENTS","TERM OF SERVICE"]],
             ["1"=>["JOIN OUR TEAM","SHIPPING","PRIVACY","TERM OF USE","LOCAL DELIVERY OR PICK UP"]],
         ];
-
-        $data['banner']=Banner::paginate(3);
         $product=Products::paginate(12);
         foreach ($product as $row){
-            $images = DB::table('image_products')->where('product_id','=',$row["id"])->select('image')->get();
-            $result = $images->toArray();
-            $resultImg=[];
+            $images    = DB::table('image_products')->where('product_id','=',$row["id"])->select('image')->get();
+            $result    = $images->toArray();
+            $resultImg =[];
             if($result!=null){
                 foreach ($result as $img){
                     $resultImg[]=$img->image;
@@ -46,10 +44,12 @@ class HomeController extends Controller
             }else{
                 $resultImg[]='images/produk/1.png';
             }
-            $row->images=$resultImg;
-            $row->price=number_format($row["price"]);
+            $row->images= $resultImg;
+            $row->price = number_format($row["price"]);
         }
-        $data['product']=$product;
+        $data['banner'] = Banner::paginate(3);
+        $data['product']= $product;
+
         return view('fo.index',$data);
     }
 }

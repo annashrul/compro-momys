@@ -1,7 +1,7 @@
 <?php
 $urlCss = 'fo/css/';
 $urlJs = 'fo/js/';
-$logo="images/logo-text-transparent.png";
+$logo="http://localhost:8000/images/logo-full-black.png";
 $menu=["Home",'Shop','Location Store','Profile'];
 
 ?>
@@ -18,6 +18,8 @@ $menu=["Home",'Shop','Location Store','Profile'];
 
     <link rel="stylesheet" href="<?=$urlCss.'meanmenu.css'?>">
     <link rel="stylesheet" href="<?=$urlCss.'style.css'?>">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
     <link rel="icon" type="image/png" href="images/favicon.png">
     <title>MOMMYS</title>
 </head>
@@ -34,7 +36,7 @@ $menu=["Home",'Shop','Location Store','Profile'];
 </div>
 
 {{-- *************** NAVBAR **************--}}
-<div class="navbar-area">
+<div class="navbar-area" data-aos="fade-out">
     <div class="mobile-nav">
 
         <a href="#" class="logo">
@@ -88,19 +90,22 @@ $menu=["Home",'Shop','Location Store','Profile'];
 </div>
 
 {{-- *************** BANNER **************--}}
-<div class="banner-area-two owl-carousel owl-theme" style="width:100%;">
+<div data-aos="fade-out" data-aos-duration="4000" class="banner-area-two owl-carousel owl-theme" style="width:100%;">
     <?php foreach ($banner as $row):?>
     <div class="container-fluid p-0" style="position: relative;height:auto;">
         <img style="object-fit: cover;" src="<?=$row['image']?>" onerror="this.onerror=null;this.src='https://wallpaperaccess.com/full/109672.jpg';" alt="Images" class="banner-img">
         <div  class="wrap-text-banner">
-            <b><?=substr($row['detail'],0,30)?></b><br/><br/>
-            <a href="#" class="default-btn btn-bg-two">SEND BAKERYS</a>
+            <b class="fs-50 fw-bold"><?=substr($row['detail'],0,30)?></b><br/>
+            <b><?=$row['detail']?></b><br/><br/>
+            <a href="#" class="default-btn btn-bg-two">SEND COOKIES</a>
+            {{--<b><?=substr($row['detail'],0,30)?></b>--}}
+            {{--<a href="#" class="default-btn btn-bg-two">SEND BAKERYS</a>--}}
         </div>
     </div>
     <?php endforeach;?>
 </div>
 {{-- *************** PRODUCT **************--}}
-<div class="pt-100 pb-70" style="background-color:rgba(0, 0, 0, 0.1);background-image: url('{{asset("images/Group-1.png")}}');background-repeat: repeat;">
+<div class="pt-100 pb-70"  data-aos="fade-in" data-aos-duration="4000" style="">
     <div class="container">
         <div class="section-title text-center">
             <h2>NOT JUST A BAKERY, BUT *THE* BAKERY</h2><br/>
@@ -109,11 +114,11 @@ $menu=["Home",'Shop','Location Store','Profile'];
         </div>
         <div class="row pt-45">
            <?php foreach($product as $i=>$row): ?>
-            <div class="col-6 col-xs-6 col-lg-3 col-sm-6">
+            <div class="col-6 col-xs-6 col-lg-3 col-sm-6" data-aos="<?=$i%2==0?'flip-right':'fade-left'?>" >
                 <div class="product-card">
                     <div class="product-item-img">
                         <img src="<?=$row['images'][0]?>"  onerror="this.onerror=null;this.src='images/produk/1.png';" alt="blog-bg-image" />
-                        <p style="display: <?=$i%2==0?'block':'none'?>" class="tag">NEW</p>
+                        {{--<p style="display: <?=$i%2==0?'block':'none'?>" class="tag">NEW</p>--}}
                     </div>
                     <div class="row wrap-content-product">
                         <div class="col-12 col-xs-12 col-md-8">
@@ -121,7 +126,9 @@ $menu=["Home",'Shop','Location Store','Profile'];
                         </div>
                         <div class="col-12 col-xs-12 col-md-4">
                             <p class="fw-500" ><?=$row['price']?></p>
-                            <button class="btn-add" onclick="showDetail('<?=$i?>')">Order</button>
+                        </div>
+                        <div class="col-12">
+                            <button class="default-btn btn-bg-two" onclick="showDetail('<?=$i?>')">Order</button>
                         </div>
                     </div>
                 </div>
@@ -132,7 +139,7 @@ $menu=["Home",'Shop','Location Store','Profile'];
 </div>
 
 {{-- *************** STORY **************--}}
-<section class="pt-100 pb-70">
+<section class="pb-70"  data-aos="fade-down" data-aos-duration="4000">
     <div class="container">
         <div class="section-title text-center">
             <h2>THE STORY BEHIND THE BAKERY THAT BECAME A NEW YORK INSTITUTION</h2><br/>
@@ -157,11 +164,11 @@ $menu=["Home",'Shop','Location Store','Profile'];
 
 
 {{-- *************** SERVICE **************--}}
-<section class="pb-70">
+<section class="pb-70" data-aos-duration="4000">
     <div class="container">
         <div class="row pt-45">
             <?php foreach ($card as $row): ?>
-            <div class="col-12 col-xs-12 col-lg-4 col-6">
+            <div class="col-12 col-xs-12 col-lg-4 col-6" data-aos="zoom-out">
                 <div class="service-card service-card-color">
                     <img src="<?=$row["img"]?>" alt="">
                     <h3><?=$row["title"]?></h3><br/>
@@ -176,7 +183,7 @@ $menu=["Home",'Shop','Location Store','Profile'];
 
 
 {{-- *************** FOOTER **************--}}
-<footer class="footer-area footer-bg">
+<footer class="footer-area footer-bg" data-aos="fade-down" data-aos-duration="4000">
     <div class="container">
         <div class="footer-top pt-100 pb-70">
             <div class="row">
@@ -229,14 +236,16 @@ $menu=["Home",'Shop','Location Store','Profile'];
     </div>
 </div>
 <script src="<?=$urlJs?>jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script src="<?=$urlJs?>wow.min.js"></script>
 <script src="<?=$urlJs?>owl.carousel.min.js"></script>
 <script src="<?=$urlJs?>meanmenu.js"></script>
 <script src="<?=$urlJs?>custom.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
 
 <script>
+    AOS.init();
     let datas = <?=json_encode($product)?>;
     let idxImagesActive=0;
     let idxProduct=0;
@@ -248,12 +257,12 @@ $menu=["Home",'Shop','Location Store','Profile'];
         let res=datas['data'][index];
         setId('modalDetailProduct').modal("show");
         setId('titleProduct').html(res.title);
-        let html=`<img id="main_${res.id}" src="${res.images[0]}"/>`;
+        let html=`<img id="main${res.id}" src="${res.images[0]}"/>`;
         if(res.images.length>1){
             html+='<div class="row" style="margin-top: 10px">';
             res.images.forEach((row,key)=>{
                 html+='<div class="col-md-2"  style="cursor: pointer" onclick="setImages('+key+')">';
-                html+='<img src="'+row+'" id="row_'+key+'" style="width: 100%;height: 100%;border-radius: 10px"/>';
+                html+='<img src="'+row+'" id="row'+key+'" style="width: 100%;height: 100%;border-radius: 10px"/>';
                 html+='</div>';
             });
             html+='</div>';
@@ -275,14 +284,14 @@ $menu=["Home",'Shop','Location Store','Profile'];
         idxImagesActive=key;
         let res=datas['data'][idxProduct];
         let newImg=res["images"][key];
-        setId(`main_${res.id}`).attr('src',newImg);
+        setId(`main${res.id}`).attr('src',newImg);
         setTimeout(function(){
             setIsActiveImages(key,true);
         },200)
     }
 
     function setIsActiveImages(idx,status){
-        setId(`row_${idx}`).css({"border":status?"2px solid #286389":"none"})
+        setId(`row${idx}`).css({"border":status?"2px solid white":"none"})
     }
 
     function sendWa(){
