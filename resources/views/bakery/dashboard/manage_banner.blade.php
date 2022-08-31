@@ -47,7 +47,7 @@
 						<tr>
 							<td><strong>{{ $loop->iteration }}</strong></td>
 							<td><div class="d-flex align-items-center"><span class="w-space-no">{{ $d->detail }}</span></div></td>
-							<td>{{ $d->image }}	</td>
+							<td><img src="{{ asset('banner/'.  $d->image ) }}" style="width:40px" /></td>
 
 							<td>
 								<div class="d-flex">

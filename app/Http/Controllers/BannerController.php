@@ -115,7 +115,7 @@ class BannerController extends Controller
             $destinationPath = 'banner/';
             $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
             $image->move($destinationPath, $profileImage);
-             File::delete($destinationPath. $banner->image);
+            File::delete($destinationPath. $banner->image);
             // unlink("banner/".$banner->image);
             $input['image'] = "$profileImage";
         }else{

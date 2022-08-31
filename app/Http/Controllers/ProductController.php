@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Products;
+use App\Models\ImageProduct;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -60,8 +61,15 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Products $products)
     {
+        $data = ImageProduct::where('product_id',$products->id)->paginate(10);
+        return view('bakery.products.show', [
+            'users' => auth()->user(),
+            'data' => $data,
+            'id' => $products->id,
+            'title' => 'List Image Product ' . $products->title 
+        ]);
     }
 
     /**
@@ -75,7 +83,7 @@ class ProductController extends Controller
         return view('bakery.products.edit', [
             'users' => auth()->user(),
             'product' => $products,
-            'title' => 'Edit Data Product'
+            'title' => 'Data Product'
         ]);
     }
 

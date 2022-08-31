@@ -8,6 +8,8 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\BannerController;
+use App\Http\Controllers\ImageProductController;
+
 
 
 
@@ -25,7 +27,9 @@ use App\Http\Controllers\BannerController;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-
+Route::resource('/image_product', ImageProductController::class)->middleware('admin')->parameters([
+    'image_product' => 'image_product:id'
+]);
 Route::resource('/users', UserController::class)->middleware('admin')->parameters([
     'users' => 'user:id'
 ]);
@@ -40,6 +44,7 @@ Route::resource('/banners', BannerController::class)->middleware('admin');
 Route::resource('/products', ProductController::class)->middleware('admin')->parameters([
     'products' => 'products:id'
 ]);
+
 
 Route::get('/',             [AdminController::class, 'dashboard_1'])->middleware('auth');
 Route::get('/index',        [AdminController::class, 'dashboard_1']);
