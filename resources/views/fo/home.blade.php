@@ -22,14 +22,14 @@
         <div class="section-title text-center">
             <h2>NOT JUST A BAKERY, BUT *THE* BAKERY</h2><br/>
             <span class="sp-color2">We started baking big, crispy-on-the-outside, gooey-on-the-inside BAKERYs in New York back in 1995. Since then, they’ve become a cult favorite. Made fresh in the Big Apple (and shipped same-day!), a BAKERY gift box shows you care — and that you have great taste.</span>
-            <br/><a href="#" class="default-btn btn-bg-two">SHOP ALL BAKERYS</a>
+            <br/><a href="{!! url('pages/shop'); !!}" class="default-btn btn-bg-two">SHOP ALL BAKERYS</a>
         </div>
         <div class="row pt-45">
             <?php foreach($product as $i=>$row): ?>
             <div class="col-6 col-xs-6 col-lg-3 col-sm-6" data-aos="<?=$i%2==0?'flip-right':'fade-left'?>" >
                 <div class="product-card">
                     <div class="product-item-img">
-                        <img src="<?=$row['images'][0]?>"  onerror="this.onerror=null;this.src='images/produk/1.png';" alt="blog-bg-image" />
+                        <img src="<?=$row['images'][0]?>"  onerror="this.onerror=null;this.src='{{asset("images/produk/1.png")}}';" alt="blog-bg-image" />
                         {{--<p style="display: <?=$i%2==0?'block':'none'?>" class="tag">NEW</p>--}}
                     </div>
                     <div class="row wrap-content-product">

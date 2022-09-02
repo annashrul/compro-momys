@@ -37,6 +37,7 @@ $footer=[
     <div class="d-table">
         <div class="d-table-cell">
             <div class="spinner"></div>
+            <div style="margin-top: -90px"><center>TUNGGU SEBENTAR</center></div>
         </div>
     </div>
 </div>
