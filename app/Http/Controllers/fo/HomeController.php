@@ -3,22 +3,14 @@
 namespace App\Http\Controllers\fo;
 
 use App\Http\Controllers\Controller;
+use App\Models\Banner;
+use App\Models\Products;
+use Illuminate\Support\Facades\DB;
+
 
 class HomeController extends Controller
 {
     public function index(){
-        $data['banner']=[
-            [
-                "title"=>"INTRODUCING ROCKY ROAD",
-                "img"=>"https://wallpaperaccess.com/full/109672.jpg",
-                "desc"=>"The perfect summertime snack!"
-            ],
-            [
-                "title"=>"INTRODUCING ROCKY ROAD",
-                "img"=>"https://wallpapercave.com/wp/GoYcMqd.jpg",
-                "desc"=>"The perfect summertime snack!"
-            ]
-        ];
         $data['card'] = [
             [
                 "title"=>"THE SWEETEST GIFT",
@@ -40,6 +32,24 @@ class HomeController extends Controller
             ["0"=>["CORPORATE GIFTING","FAQ","GET IN TOUCH","ABOUT","PARTIES AND EVENTS","TERM OF SERVICE"]],
             ["1"=>["JOIN OUR TEAM","SHIPPING","PRIVACY","TERM OF USE","LOCAL DELIVERY OR PICK UP"]],
         ];
+        $product=Products::paginate(12);
+        foreach ($product as $row){
+            $images    = DB::table('image_products')->where('product_id','=',$row["id"])->select('image')->get();
+            $result    = $images->toArray();
+            $resultImg =[];
+            if($result!=null){
+                foreach ($result as $img){
+                    $resultImg[]=$img->image;
+                }
+            }else{
+                $resultImg[]='images/produk/1.png';
+            }
+            $row->images= $resultImg;
+            $row->price = number_format($row["price"]);
+        }
+        $data['banner'] = Banner::paginate(3);
+        $data['product']= $product;
+
         return view('fo.index',$data);
     }
 }
