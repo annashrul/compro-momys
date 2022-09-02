@@ -2,8 +2,12 @@
 $urlCss = 'fo/css/';
 $urlJs = 'fo/js/';
 $logo="http://localhost:8000/images/logo-full-black.png";
-$menu=["Home",'Shop','Location Store','Profile'];
-
+$menu=["Home",'Shop','Location Store'];
+$menuLink=["pages",'pages/shop','pages/location'];
+$footer=[
+    ["0"=>["CORPORATE GIFTING","FAQ","GET IN TOUCH","ABOUT","PARTIES AND EVENTS","TERM OF SERVICE"]],
+    ["1"=>["JOIN OUR TEAM","SHIPPING","PRIVACY","TERM OF USE","LOCAL DELIVERY OR PICK UP"]],
+];
 ?>
         <!doctype html>
 <html lang="zxx">
@@ -11,19 +15,21 @@ $menu=["Home",'Shop','Location Store','Profile'];
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="<?=$urlCss.'bootstrap.min.css'?>">
-    <link rel="stylesheet" href="<?=$urlCss.'animate.min.css'?>">
-    <link rel="stylesheet" href="<?=$urlCss.'boxicons.min.css'?>" />
-    <link rel="stylesheet" href="<?=$urlCss.'owl.carousel.min.css'?>" />
+    {{--<link rel="stylesheet" href="<?=$urlCss.'bootstrap.min.css'?>">--}}
+    <link rel="stylesheet" href="{{asset($urlCss."bootstrap.min.css")}}">
+    <link rel="stylesheet" href="{{asset($urlCss."animate.min.css")}}">
+    <link rel="stylesheet" href="{{asset($urlCss.'boxicons.min.css')}}" />
+    <link rel="stylesheet" href="{{asset($urlCss.'owl.carousel.min.css')}}" />
 
-    <link rel="stylesheet" href="<?=$urlCss.'meanmenu.css'?>">
-    <link rel="stylesheet" href="<?=$urlCss.'style.css'?>">
+    <link rel="stylesheet" href="{{asset($urlCss.'meanmenu.css')}}">
+    <link rel="stylesheet" href="{{asset($urlCss.'style.css')}}">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <link rel="icon" type="image/png" href="images/favicon.png">
     <title>MOMMYS</title>
 </head>
 <body>
+
 
 
 {{-- *************** LOADING **************--}}
@@ -36,150 +42,41 @@ $menu=["Home",'Shop','Location Store','Profile'];
 </div>
 
 {{-- *************** NAVBAR **************--}}
-<div class="navbar-area" data-aos="fade-out">
-    <div class="mobile-nav">
+<header class="navbar-area">
 
-        <a href="#" class="logo">
-            <img src="<?=$logo?>" class="logo-one h-50" alt="Logo">
+    <div class="mobile-nav">
+        <a href="{!! url($menuLink[0]); !!}" class="logo">
+            {{--<img src="<?=$logo?>" class="logo-one h-50" alt="Logo">--}}
+            <img src="<?=$logo?>" alt="logo_light" class="h-50"/>
+            {{--<img src="<?=$logo?>" alt="logo-dark" />--}}
         </a>
     </div>
 
     <div class="main-nav">
-        <div class="container-fluid">
-            <div class="container-max">
-                <nav class="navbar navbar-expand-md navbar-light ">
-                    <a class="navbar-brand" href="#">
-                        <img src="<?=$logo?>" class="logo-one h-70" alt="Logo" style="margin-left: 20%">
-                    </a>
-
-                    <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
-                        <div class=" m-auto"></div>
-                        <ul class="nav navbar-nav mx-auto">
-                            <?php foreach ($menu as $row): ?>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    <?=strtoupper($row)?>
-                                </a>
-                            </li>
-                            <?php endforeach; ?>
-                            <li class="nav-item mobile-nav-icon">
-                                <a href="#" class="nav-link" style="display: flex">
-                                    <i class="bx bx-user fs-30" style="margin-right: 10px"></i>
-                                    <i class="bx bx-cart fs-30"></i>
-                                </a>
-                            </li>
-                        </ul>
-                        <div class=" m-auto"></div>
-                        <ul class="navbar-nav">
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    <i class="bx bx-user fs-30"></i>
-                                </a>
-                            </li>
-                            {{-- <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    <i class="bx bx-cart fs-30"></i>
-                                </a>
-                            </li> --}}
-                        </ul>
-                    </div>
-                </nav>
-            </div>
-        </div>
-    </div>
-</div>
-
-{{-- *************** BANNER **************--}}
-<div data-aos="fade-out" data-aos-duration="4000" class="banner-area-two owl-carousel owl-theme" style="width:100%;">
-    <?php foreach ($banner as $row):?>
-    <div class="container-fluid p-0" style="position: relative;height:auto;">
-        <img style="object-fit: cover;" src="<?=$row['image']?>" onerror="this.onerror=null;this.src='https://wallpaperaccess.com/full/109672.jpg';" alt="Images" class="banner-img">
-        <div  class="wrap-text-banner">
-            <b class="fs-50 fw-bold"><?=substr($row['detail'],0,30)?></b><br/>
-            <b><?=$row['detail']?></b><br/><br/>
-            <a href="#" class="default-btn btn-bg-two">SEND COOKIES</a>
-            {{--<b><?=substr($row['detail'],0,30)?></b>--}}
-            {{--<a href="#" class="default-btn btn-bg-two">SEND BAKERYS</a>--}}
-        </div>
-    </div>
-    <?php endforeach;?>
-</div>
-{{-- *************** PRODUCT **************--}}
-<div class="pt-100 pb-70"  data-aos="fade-in" data-aos-duration="4000" style="">
-    <div class="container">
-        <div class="section-title text-center">
-            <h2>NOT JUST A BAKERY, BUT *THE* BAKERY</h2><br/>
-            <span class="sp-color2">We started baking big, crispy-on-the-outside, gooey-on-the-inside BAKERYs in New York back in 1995. Since then, they’ve become a cult favorite. Made fresh in the Big Apple (and shipped same-day!), a BAKERY gift box shows you care — and that you have great taste.</span>
-            <br/><a href="#" class="default-btn btn-bg-two">SHOP ALL BAKERYS</a>
-        </div>
-        <div class="row pt-45">
-           <?php foreach($product as $i=>$row): ?>
-            <div class="col-6 col-xs-6 col-lg-3 col-sm-6" data-aos="<?=$i%2==0?'flip-right':'fade-left'?>" >
-                <div class="product-card">
-                    <div class="product-item-img">
-                        <img src="<?=$row['images'][0]?>"  onerror="this.onerror=null;this.src='images/produk/1.png';" alt="blog-bg-image" />
-                        {{--<p style="display: <?=$i%2==0?'block':'none'?>" class="tag">NEW</p>--}}
-                    </div>
-                    <div class="row wrap-content-product">
-                        <div class="col-12 col-xs-12 col-md-8">
-                            <p class="fw-bold"><?=$row['title']?></p>
-                        </div>
-                        <div class="col-12 col-xs-12 col-md-4">
-                            <p class="fw-500" ><?=$row['price']?></p>
-                        </div>
-                        <div class="col-12">
-                            <button class="default-btn btn-bg-two" onclick="showDetail('<?=$i?>')">Order</button>
-                        </div>
-                    </div>
+        <nav class="navbar navbar-expand-md navbar-light">
+            <div class="container">
+                <a class="navbar-brand" href="{!! url($menuLink[0]); !!}">
+                    <img src="<?=$logo?>" alt="logo_light" style="height: 50px;"/>
+                    <img src="<?=$logo?>" alt="logo-dark" style="height: 50px;"/>
+                </a>
+                <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
+                    <div class=" m-auto"></div>
+                    <ul class="nav navbar-nav">
+                        <?php foreach ($menu as $key=>$row): ?>
+                        <li class="nav-item ">
+                            <a href="{!! url($menuLink[$key]); !!}" class="nav-link" style="border-bottom:2px solid <?=strtolower($pages)==strtolower($row)?'white':'transparent'?>">
+                                <?=strtoupper($row)?>
+                            </a>
+                        </li>
+                        <?php endforeach; ?>
+                    </ul>
                 </div>
             </div>
-           <?php endforeach; ?>
-        </div>
+        </nav>
     </div>
-</div>
+</header>
 
-{{-- *************** STORY **************--}}
-<section class="pb-70"  data-aos="fade-down" data-aos-duration="4000">
-    <div class="container">
-        <div class="section-title text-center">
-            <h2>THE STORY BEHIND THE BAKERY THAT BECAME A NEW YORK INSTITUTION</h2><br/>
-            <p class="sp-color2">Baking hobbyists Pam Weekes & Connie McDonald started Levain to sell fresh-baked breads. In 1995, they whipped up a batch of big chocolate chip walnut BAKERYs, and their neighborhood shop became so much more. “The BAKERY” earned a spot in the hearts of locals and visitors alike, taking on a life of its own as a New York City icon. Nearly 30 years later, not much has changed — we’re still baking beloved BAKERYs with simple ingredients and a lot of love.</p>
-        </div>
-        <div class="row pt-45 pr-10 pl-10">
-            <div class="col-lg-6 p-0">
-                <img class="img-story" src="https://cdn.shopify.com/s/files/1/0100/4575/1377/files/50-50-Homepage_1400x.jpg?v=1655342627" alt="Images">
-            </div>
-            <div class="col-lg-6 wrap-text-story">
-                <h2 class="text-center">WE’RE BAKERY PEOPLE, BUT ALSO PEOPLE PEOPLE
-                </h2><br/>
-                <p class="text-center">
-                    Stop by for a fresh-out-of-the-oven BAKERY if you’re in the neighborhood — you’ll smell when you’re close :)
-                </p>
-                <a href="#" class="default-btn btn-bg-two">FIND A BAKERY</a>
-            </div>
-
-        </div>
-    </div>
-</section>
-
-
-{{-- *************** SERVICE **************--}}
-<section class="pb-70" data-aos-duration="4000">
-    <div class="container">
-        <div class="row pt-45">
-            <?php foreach ($card as $row): ?>
-            <div class="col-12 col-xs-12 col-lg-4 col-6" data-aos="zoom-out">
-                <div class="service-card service-card-color">
-                    <img src="<?=$row["img"]?>" alt="">
-                    <h3><?=$row["title"]?></h3><br/>
-                    <p><?=$row["desc"]?></p><br/>
-                    <a href="#" class="default-btn btn-bg-two">FIND OUT MORE</a>
-                </div>
-            </div>
-            <?php endforeach; ?>
-        </div>
-    </div>
-</section>
+@yield('content')
 
 
 {{-- *************** FOOTER **************--}}
@@ -217,12 +114,12 @@ $menu=["Home",'Shop','Location Store','Profile'];
 
     </div>
 </footer>
-<div class="modal fade" id="modalDetailProduct" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade modalDetailProduct" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="titleProduct">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="background-color:transparent;color:white;border:none">
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
@@ -235,33 +132,33 @@ $menu=["Home",'Shop','Location Store','Profile'];
         </div>
     </div>
 </div>
-<script src="<?=$urlJs?>jquery.min.js"></script>
+<script src="{{asset($urlJs.'jquery.min.js')}}"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-<script src="<?=$urlJs?>wow.min.js"></script>
-<script src="<?=$urlJs?>owl.carousel.min.js"></script>
-<script src="<?=$urlJs?>meanmenu.js"></script>
-<script src="<?=$urlJs?>custom.js"></script>
+<script src="{{asset($urlJs.'wow.min.js')}}"></script>
+<script src="{{asset($urlJs.'owl.carousel.min.js')}}"></script>
+<script src="{{asset($urlJs.'meanmenu.js')}}"></script>
+<script src="{{asset($urlJs.'custom.js')}}"></script>
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
 
 <script>
     AOS.init();
-    let datas = <?=json_encode($product)?>;
+    let datas = <?=json_encode(isset($product)?$product:array())?>;
     let idxImagesActive=0;
     let idxProduct=0;
     function setId(id){
         return $(`#${id}`);
     }
     function showDetail(index){
+        console.log(datas);
         idxProduct=index;
-        let res=datas['data'][index];
-        setId('modalDetailProduct').modal("show");
+        let res=datas['data']===undefined?datas[index]:datas['data'][index];
+        $('.modalDetailProduct').modal("show");
         setId('titleProduct').html(res.title);
         let html=`<img id="main${res.id}" src="${res.images[0]}"/>`;
         if(res.images.length>1){
             html+='<div class="row" style="margin-top: 10px">';
             res.images.forEach((row,key)=>{
-                html+='<div class="col-md-2"  style="cursor: pointer" onclick="setImages('+key+')">';
+                html+='<div class="col-3 col-xs-3 col-md-2"  style="cursor: pointer" onclick="setImages('+key+')">';
                 html+='<img src="'+row+'" id="row'+key+'" style="width: 100%;height: 100%;border-radius: 10px"/>';
                 html+='</div>';
             });
@@ -282,7 +179,8 @@ $menu=["Home",'Shop','Location Store','Profile'];
     function setImages(key){
         setIsActiveImages(idxImagesActive,false);
         idxImagesActive=key;
-        let res=datas['data'][idxProduct];
+        let res=datas['data']===undefined?datas[idxProduct]:datas['data'][idxProduct];
+//        let res=datas['data'][idxProduct];
         let newImg=res["images"][key];
         setId(`main${res.id}`).attr('src',newImg);
         setTimeout(function(){
@@ -296,7 +194,9 @@ $menu=["Home",'Shop','Location Store','Profile'];
 
     function sendWa(){
         const enter="%0a";
-        let res=datas['data'][idxProduct];
+//        let res=datas['data'][idxProduct];
+        let res=datas['data']===undefined?datas[idxProduct]:datas['data'][idxProduct];
+
         let message=`Hallo admin.. ${enter}saya pesan *${res.title} - Rp. ${res.price},-* yaaaaah${enter}Terimakasih ...`;
         window.open("https://api.whatsapp.com/send/?phone=6281223165037&text="+message,"_blank")
     }
