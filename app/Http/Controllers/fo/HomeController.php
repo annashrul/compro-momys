@@ -6,11 +6,13 @@ use App\Http\Controllers\Controller;
 use App\Models\Banner;
 use App\Models\Products;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Support\Facades\Request;
 
 class HomeController extends Controller
 {
     public function index(){
+        $data['pages']="home";
+
         $data['card'] = [
             [
                 "title"=>"THE SWEETEST GIFT",
@@ -28,10 +30,7 @@ class HomeController extends Controller
                 "img"=>"https://cdn.shopify.com/s/files/1/0100/4575/1377/files/LetsChat-Illustration.png?v=1657150077&width=352"
             ]
         ];
-        $data['footer']=[
-            ["0"=>["CORPORATE GIFTING","FAQ","GET IN TOUCH","ABOUT","PARTIES AND EVENTS","TERM OF SERVICE"]],
-            ["1"=>["JOIN OUR TEAM","SHIPPING","PRIVACY","TERM OF USE","LOCAL DELIVERY OR PICK UP"]],
-        ];
+//        $data['footer']=;
         $product=Products::paginate(12);
         foreach ($product as $row){
             $images    = DB::table('image_products')->where('product_id','=',$row["id"])->select('image')->get();
@@ -42,7 +41,7 @@ class HomeController extends Controller
                     $resultImg[]=$img->image;
                 }
             }else{
-                $resultImg[]='images/produk/1.png';
+                $resultImg[]=asset('images/produk/1.png');
             }
             $row->images= $resultImg;
             $row->price = number_format($row["price"]);
@@ -50,6 +49,32 @@ class HomeController extends Controller
         $data['banner'] = Banner::paginate(3);
         $data['product']= $product;
 
-        return view('fo.index',$data);
+        return view('fo.home',$data);
+    }
+
+
+    public function shop(){
+        $data['pages']="shop";
+        $product=Products::all();
+        foreach ($product as $row){
+            $images    = DB::table('image_products')->where('product_id','=',$row["id"])->select('image')->get();
+            $result    = $images->toArray();
+            $resultImg =[];
+            if($result!=null){
+                foreach ($result as $img){
+                    $resultImg[]=$img->image;
+                }
+            }else{
+                $resultImg[]=asset('images/produk/1.png');
+            }
+            $row->images= $resultImg;
+            $row->price = number_format($row["price"]);
+        }
+        $data['product']= $product;
+        return view('fo.shop',$data);
+    }
+    public function location(){
+        $data['pages']="location store";
+        return view('fo.location',$data);
     }
 }
