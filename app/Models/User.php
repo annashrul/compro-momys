@@ -20,8 +20,8 @@ class User extends Authenticatable
     //     'name', 'email', 'password',
     // ];
     protected $guarded = ['id'];
-       protected $fillable = [
-        'fname', 'lname', 'email','phone_number','dob','birth_place','address','image','password','role_id',
+    protected $fillable = [
+        'fname', 'lname', 'email', 'phone_number', 'dob', 'birth_place', 'address', 'image', 'password', 'role_id',
     ];
 
     /**
@@ -45,5 +45,10 @@ class User extends Authenticatable
     public function Role()
     {
         return $this->belongsTo(Role::class);
+    }
+
+    public function product()
+    {
+        return $this->hasMany(Products::class);
     }
 }

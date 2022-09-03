@@ -8,8 +8,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\BannerController;
-
-
+use App\Http\Controllers\ImageProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,6 +39,12 @@ Route::resource('/banners', BannerController::class)->middleware('admin');
 Route::resource('/products', ProductController::class)->middleware('admin')->parameters([
     'products' => 'products:id'
 ]);
+Route::get('/products/{products:id}/add-image', [ImageProductController::class, 'create'])->middleware('admin');
+Route::post('/products/{products:id}/add-image', [ImageProductController::class, 'store'])->middleware('admin');
+Route::delete('/products/{products:id}/add-image/{imageproduct:id}', [ImageProductController::class, 'delete'])->middleware('admin');
+
+
+Route::get('/products/uploadImage/{imageproduct:id}', [ImageProductController::class, 'index']);
 
 Route::get('/',             [AdminController::class, 'dashboard_1'])->middleware('auth');
 Route::get('/index',        [AdminController::class, 'dashboard_1']);
@@ -113,6 +118,7 @@ Route::get('/page-error-404', [AdminController::class, 'page_error_404']);
 Route::get('/page-error-500', [AdminController::class, 'page_error_500']);
 Route::get('/page-error-503', [AdminController::class, 'page_error_503']);
 Route::get('/page-forgot-password', [AdminController::class, 'page_forgot_password']);
+Route::post('/page-forgot-password', [AdminController::class, 'password'])->name('password.email');
 Route::get('/page-lock-screen', [AuthController::class, 'page_lock_screen']);
 Route::get('/page-login',   [AuthController::class, 'page_login'])->name('login');
 Route::post('/page-login', [AuthController::class, 'authenticate']);

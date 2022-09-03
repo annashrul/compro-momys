@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Password;
 
 class AdminController extends Controller
 {
@@ -658,5 +659,16 @@ class AdminController extends Controller
         $page_description = 'Some description for the page';
         $action = __FUNCTION__;
         return view('bakery.page.forgot_password', compact('page_title', 'page_description', 'action'));
+    }
+
+    public function password(Request $request)
+    {
+        $request->validate(['email' => 'required|email']);
+        $status = Password::sendResetLink(
+            $request->only('email')
+        );
+        return $status === Password::RESET_LINK_SENT
+            ? back()->with(['status' => __($status)])
+            : back()->withErrors(['email' => __($status)]);
     }
 }
