@@ -10,7 +10,7 @@
 
             <div class="row">
                 <div class="col-md-4">
-                    <img style="border-radius: 10px" src="<?=$result['image']?>"/>
+                    <img style="border-radius: 10px" src="/location/<?=$result['image']?>"/>
                 </div>
                 <div class="col-md-8" style="display: flex;flex-direction: column;justify-content: center;">
 

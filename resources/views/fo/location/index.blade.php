@@ -15,7 +15,7 @@
                 <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="location-item">
                         <div class="location-image">
-                            <img src="<?=$row['image']?>" alt="" />
+                            <img src="/location/<?=$row['image']?>" alt="" />
                         </div>
                         <div class="location-content">
                             <h5>
