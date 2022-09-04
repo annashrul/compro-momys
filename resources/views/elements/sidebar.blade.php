@@ -27,14 +27,14 @@
 		<ul class="metismenu" id="menu">
 			<li class="nav-label first">Main Menu</li>
             <li>
-            	<a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+            	<a class=" ai-icon" href="{!! url('/index'); !!}">
 					<i class="flaticon-144-layout"></i>
 					<span class="nav-text">Dashboard</span>
 				</a>
-                <ul aria-expanded="false">
+                {{-- <ul aria-expanded="false">
 					<li><a href="{!! url('/index'); !!}">Dashboard Light</a></li>
 					<li><a href="{!! url('/index-2'); !!}">Dashboard Dark</a></li>
-				</ul>
+				</ul> --}}
             </li>
 			@can('admin')
             <li>
@@ -42,9 +42,9 @@
 					<i class="flaticon-144-layout"></i>
 					<span class="nav-text">Management Data</span>
 				</a>
-                <ul aria-expanded="false">
+                {{-- <ul aria-expanded="false">
 					<li><a href="{!! url('/my-wallets'); !!}">Role User</a></li>
-				</ul>
+				</ul> --}}
 				<ul aria-expanded="false">
 					<li><a href="{!! url('/users'); !!}">User Data</a></li>
 				</ul>
