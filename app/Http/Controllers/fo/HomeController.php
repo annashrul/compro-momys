@@ -69,9 +69,10 @@ class HomeController extends Controller
     public function countProductVisitor(){
         $getVisitor = Products::where('id', $_POST['id'])->first();
         if($getVisitor!=null){
-            $getVisitor["visitor_count"]=$getVisitor["visitor_count"]+1;
-            $update=Products::where('id', $_POST['id'])->update(array("visitor_count"=>$getVisitor["visitor_count"]));
-            echo json_encode(array("msg"=>$update,'data'=>$getVisitor["visitor_count"]));
+            $count=$getVisitor["visitor_count"];
+            $count=$count+1;
+            $update=Products::where('id', $_POST['id'])->update(array("visitor_count"=>$count));
+            echo json_encode(array("msg"=>$update,'data'=>$count));
         }
         else{
             echo json_encode(array("msg"=>0,'data'=>null));
