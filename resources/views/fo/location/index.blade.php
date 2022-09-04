@@ -11,35 +11,30 @@
 <section class="location-section pb-70">
     <div class="container">
         <div class="row">
-            <?php for($i=0;$i<12;$i++): ?>
+            <?php foreach($result as $i=>$row): ?>
                 <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="location-item">
                         <div class="location-image">
-                            <img src="<?=$i%2==0?'https://cdn.shopify.com/s/files/1/0100/4575/1377/files/MicrosoftTeams-image_7_1400x.png?v=1636129664':'https://cdn.shopify.com/s/files/1/0100/4575/1377/files/Levain_LocationLanding_AmsterdamAve_1400x.jpg?v=1571850368'?>" alt="team-member" />
+                            <img src="<?=$row['image']?>" alt="" />
                         </div>
                         <div class="location-content">
                             <h5>
-                                <a href="{!! url('pages/location/boston'); !!}" style="color: black">BOSTON</a>
+                                <a href="{!! url('pages/location/'.strtolower($row['title'])); !!}" style="color: black"><?=$row['title']?></a>
                             </h5>
-                            <p style="color: black">180 NEWBURY STREET BOSTON, MA 02116</p>
+                            <p style="color: black"><?=substr($row['detail'],0,40)?></p>
                             <div class="other-info">
-                                <a style="color: black" href="#" class="bg-tertiary" target="_blank">
-                                    617-390-7799
+                                <a style="color: black" class="bg-tertiary" target="_blank">
+                                    <?=$row['phone_number']?>
                                 </a><br/>
-                                <a style="color: black" href="#" class="bg-success" target="_blank">
-                                    8AM - 8PM
+                                <a style="color: black" class="bg-tertiary" target="_blank">
+                                    <?=$row['email']?>
                                 </a>
-                                <a href="#" class="bg-danger" target="_blank">
-                                    <i class="fab fa-youtube"></i>
-                                </a>
-                                <a href="#" class="bg-info" target="_blank">
-                                    <i class="fab fa-linkedin-in"></i>
-                                </a>
+
                             </div>
                         </div>
                     </div>
                 </div>
-            <?php endfor;?>
+            <?php endforeach;?>
         </div>
     </div>
 </section>

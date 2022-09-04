@@ -8,40 +8,38 @@
             </div>
             <br>
 
-            <div class="row" style="position: relative">
+            <div class="row">
                 <div class="col-md-4">
-                    <img style="border-radius: 10px" src="https://cdn.shopify.com/s/files/1/0100/4575/1377/files/MicrosoftTeams-image_7_1400x.png?v=1636129664"/>
+                    <img style="border-radius: 10px" src="<?=$result['image']?>"/>
                 </div>
                 <div class="col-md-8" style="display: flex;flex-direction: column;justify-content: center;">
 
-                    <p>Pasaraya Blok M Gedung B Lt. 6, Jl. Iskandarsyah II No.7, RT.3/RW.1, Melawai, Kec. Kby. Baru, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12160</p>
+                    <p><?=$result['detail']?></p>
                     <table>
                         <thead>
-                        <tr>
-                            <th width="2%">Whatsapp</th>
-                            <th width="1%">:</th>
-                            <th width="10%">0892346389432</th>
-                        </tr>
+
                         <tr>
                             <th width="2%">Instagram</th>
                             <th width="1%">:</th>
-                            <th width="10%"><a style="color: white;" href="https://instagram.com"><u>https://instagram.com</u></a></th>
+                            <th width="10%"><a style="color: white;" href="<?=$result['instagram']?>"><u><?=$result['instagram']?></u></a></th>
                         </tr>
                         <tr>
-                            <th width="2%">Facebook</th>
+                            <th width="2%">Link</th>
                             <th width="1%">:</th>
-                            <th width="10%"><a style="color: white;" href="https://facebook.com"><u>https://facebook.com</u></a></th>
+                            <th width="10%"><a style="color: white;" href="<?=$result['link']?>"><u>klik disini</u></a></th>
+                        </tr>
+                        <tr>
+                            <th width="2%">Phone Number</th>
+                            <th width="1%">:</th>
+                            <th width="10%"><?=$result['phone_number']?></th>
                         </tr>
                         <tr>
                             <th width="2%">Email</th>
                             <th width="1%">:</th>
-                            <th width="10%">email@gmail.com</th>
+                            <th width="10%"><?=$result['email']?></th>
                         </tr>
-                        <tr>
-                            <th width="2%">Link Google Map</th>
-                            <th width="1%">:</th>
-                            <th width="10%"><a style="color: white;" href="https://facebook.com"><u>Klik Disini</u></a></th>
-                        </tr>
+
+
                         </thead>
                     </table>
                 </div>

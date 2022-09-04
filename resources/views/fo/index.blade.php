@@ -156,9 +156,10 @@ $footer=[
         let res=datas['data']===undefined?datas[index]:datas['data'][index];
         $('.modalDetailProduct').modal("show");
         setId('titleProduct').html(res.title);
-        let html=`<img id="main${res.id}" src="${res.images[0]}"/>`;
+        console.log(res.images[0])
+        let html=`<img id="main${res.id}" src="/image/${res.images[0]}"  style="margin-bottom: 10px;border-radius: 10px"/>`;
         if(res.images.length>1){
-            html+='<div class="row" style="margin-top: 10px">';
+            html+='<div class="row">';
             res.images.forEach((row,key)=>{
                 html+='<div class="col-3 col-xs-3 col-md-2"  style="cursor: pointer" onclick="setImages('+key+')">';
                 html+='<img src="'+row+'" id="row'+key+'" style="width: 100%;height: 100%;border-radius: 10px"/>';
@@ -183,7 +184,7 @@ $footer=[
         idxImagesActive=key;
         let res=datas['data']===undefined?datas[idxProduct]:datas['data'][idxProduct];
 //        let res=datas['data'][idxProduct];
-        let newImg=res["images"][key];
+        let newImg=`/image/${res["images"][key]}`;
         setId(`main${res.id}`).attr('src',newImg);
         setTimeout(function(){
             setIsActiveImages(key,true);

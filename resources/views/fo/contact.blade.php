@@ -13,6 +13,9 @@
                     <div class="text-center">
                         <img style="border-radius: 10px" src="http://localhost:8000/images/logo-full-black.png"/>
                     </div>
+                    <div class="alert alert-success" role="alert" id="notif" style="margin-top: 20px;display: none">
+                        Data saved successfully
+                    </div>
                     <form id="form_contact">
                         <div class="form-group">
                             <label for="">Email</label>
@@ -24,7 +27,8 @@
                             <textarea style="height: 161px;" name="message" id="" class="form-control" required></textarea>
                         </div><br>
                         <div class="form-group">
-                            <button type="submit" class="default-btn btn-bg-two"  style="float: right" >Send</button>
+
+                            <button type="submit" class="default-btn btn-bg-two"  style="float: right" id="btn_send">Send</button>
                         </div>
                     </form>
                 </div>
@@ -35,8 +39,15 @@
     <script>
         $("#form_contact").on('submit',function(e){
             e.preventDefault();
-            alert("data has been saved");
-            location.reload();
+            $("#btn_send").text("loading ...");
+            setTimeout(function(){
+                $("#notif").css({"display":"block"}).fadeIn();
+                setTimeout(function(){
+                    $("#notif").fadeOut();
+                    $("#form_contact")[0].reset();
+                    $("#btn_send").text("send");
+                },2000)
+            },200)
         })
     </script>
 

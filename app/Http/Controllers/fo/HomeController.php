@@ -7,6 +7,7 @@ use App\Models\Banner;
 use App\Models\Products;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Request;
+use App\Models\Location;
 
 class HomeController extends Controller
 {
@@ -45,8 +46,14 @@ class HomeController extends Controller
     public function location($param=null){
         $data['pages']="location store";
         $data['param']=$param;
-        $view='index';
-        if($param!=null) $view='detail';
+        if($param==null){
+            $view='index';
+            $data['result']=Location::all();
+        }else{
+            $view='detail';
+            $data['result']=Location::where('title', '=', $param)->first();
+        }
+//        var_dump($data);
         return view('fo.location.'.$view,$data);
     }
     public function about(){
