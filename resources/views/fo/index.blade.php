@@ -2,8 +2,8 @@
 $urlCss = 'fo/css/';
 $urlJs = 'fo/js/';
 $logo="http://localhost:8000/images/logo-full-black.png";
-$menu=["Home",'Shop','Location Store'];
-$menuLink=["pages",'pages/shop','pages/location'];
+$menu=["Home",'Shop','Location Store','About','Contact'];
+$menuLink=["pages",'pages/shop','pages/location','pages/about','pages/contact'];
 $footer=[
     ["0"=>["CORPORATE GIFTING","FAQ","GET IN TOUCH","ABOUT","PARTIES AND EVENTS","TERM OF SERVICE"]],
     ["1"=>["JOIN OUR TEAM","SHIPPING","PRIVACY","TERM OF USE","LOCAL DELIVERY OR PICK UP"]],
@@ -27,6 +27,9 @@ $footer=[
 
     <link rel="icon" type="image/png" href="images/favicon.png">
     <title>MOMMYS</title>
+
+    <script src="{{asset($urlJs.'jquery.min.js')}}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </head>
 <body>
 
@@ -133,14 +136,12 @@ $footer=[
         </div>
     </div>
 </div>
-<script src="{{asset($urlJs.'jquery.min.js')}}"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
 <script src="{{asset($urlJs.'wow.min.js')}}"></script>
 <script src="{{asset($urlJs.'owl.carousel.min.js')}}"></script>
 <script src="{{asset($urlJs.'meanmenu.js')}}"></script>
 <script src="{{asset($urlJs.'custom.js')}}"></script>
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
 <script>
     AOS.init();
     let datas = <?=json_encode(isset($product)?$product:array())?>;
@@ -201,6 +202,7 @@ $footer=[
         let message=`Hallo admin.. ${enter}saya pesan *${res.title} - Rp. ${res.price},-* yaaaaah${enter}Terimakasih ...`;
         window.open("https://api.whatsapp.com/send/?phone=6281223165037&text="+message,"_blank")
     }
+
 </script>
 
 </body>

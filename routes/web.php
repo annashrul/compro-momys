@@ -124,3 +124,6 @@ Route::get('/page-register', [AuthController::class, 'page_register']);
 Route::get('/pages', [\App\Http\Controllers\fo\HomeController::class, 'index']);
 Route::get('/pages/shop', [\App\Http\Controllers\fo\HomeController::class, 'shop']);
 Route::get('/pages/location', [\App\Http\Controllers\fo\HomeController::class, 'location']);
+Route::get('/pages/about', [\App\Http\Controllers\fo\HomeController::class, 'about']);
+Route::get('/pages/contact', [\App\Http\Controllers\fo\HomeController::class, 'contact']);
+Route::get('/pages/location/{slug}', [\App\Http\Controllers\fo\HomeController::class, 'location']);

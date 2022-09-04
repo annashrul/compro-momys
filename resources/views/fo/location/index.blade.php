@@ -1,18 +1,17 @@
 @extends('fo/index')
 @section('content')
-    <div  data-aos="fade-in" data-aos-duration="4000" style="margin-top: 150px;background-color: #286389!important;">
-        <div class="container">
-            <div class="section-title text-center">
-                <h2>OUR LOCATIONS</h2><br/>
-            </div>
-
+<div  data-aos="fade-in" data-aos-duration="4000" style="margin-top: 150px;background-color: #286389!important;">
+    <div class="container">
+        <div class="section-title text-center">
+            <h2>OUR LOCATIONS</h2><br/>
         </div>
-    </div>
-    <section class="location-section pb-70">
-        <div class="container">
 
-            <div class="row">
-                <?php for($i=0;$i<12;$i++): ?>
+    </div>
+</div>
+<section class="location-section pb-70">
+    <div class="container">
+        <div class="row">
+            <?php for($i=0;$i<12;$i++): ?>
                 <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="location-item">
                         <div class="location-image">
@@ -20,7 +19,7 @@
                         </div>
                         <div class="location-content">
                             <h5>
-                                <a href="#" style="color: black">BOSTON</a>
+                                <a href="{!! url('pages/location/boston'); !!}" style="color: black">BOSTON</a>
                             </h5>
                             <p style="color: black">180 NEWBURY STREET BOSTON, MA 02116</p>
                             <div class="other-info">
@@ -40,9 +39,9 @@
                         </div>
                     </div>
                 </div>
-                <?php endfor;?>
-            </div>
+            <?php endfor;?>
         </div>
-    </section>
+    </div>
+</section>
 
 @endsection
