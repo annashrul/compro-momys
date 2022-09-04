@@ -9,6 +9,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\ImageProductController;
+use App\Http\Controllers\LocationController;
+
 
 
 
@@ -27,6 +29,7 @@ use App\Http\Controllers\ImageProductController;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
+Route::resource('/locations', LocationController::class)->middleware('admin');
 Route::resource('/image_product', ImageProductController::class)->middleware('admin')->parameters([
     'image_product' => 'image_product:id'
 ]);

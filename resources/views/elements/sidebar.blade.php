@@ -57,6 +57,11 @@
 					<li><a href="{!! url('/banners'); !!}">Banner Data</a></li>
 
 				</ul>
+				<ul aria-expanded="false">
+
+					<li><a href="{!! url('/locations'); !!}">Location Data</a></li>
+
+				</ul>
             </li>
 			@endcan
 			{{-- <li class="nav-label">Apps</li>

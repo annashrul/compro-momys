@@ -97,7 +97,7 @@ class UserController extends Controller
             'users' => auth()->user(),
             'user' => $user,
             'roles' => Role::all(),
-            'title' => 'Create Data User'
+            'title' => 'Edit Data User'
         ]);
     }
 
@@ -139,7 +139,7 @@ class UserController extends Controller
             unset($validatedData['image']);
         }
         User::where('id', $user->id)->update($validatedData);
-        return redirect('/users')->with('success', 'New user has been Updated');
+        return redirect('/users')->with('success', 'User has been Updated');
     }
 
     /**
