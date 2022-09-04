@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Banner;
+use App\Models\Location;
 use Illuminate\Support\Facades\File;
 
 
-class BannerController extends Controller
+class LocationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,13 +16,13 @@ class BannerController extends Controller
      */
     public function index()
     {
-         $page_title = 'Banner Management';
+        $page_title = 'Location Management';
         $page_description = 'Some description for the page';
         $action = __FUNCTION__;
-        return view('bakery.dashboard.manage_banner', [
+        return view('bakery.dashboard.manage_location', [
             'title' => $page_title,
             'users' => auth()->user(),
-            'data' => Banner::paginate(10)
+            'data' => Location::paginate(10)
         ]);
     }
 
@@ -31,13 +31,13 @@ class BannerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Banner $banner)
+    public function create(Location $location)
     {
-           return view('bakery.banners.index', [
+       return view('bakery.location.index', [
             'users' => auth()->user(),
             // 'user' => $banner,
             // 'roles' => Role::all(),
-            'title' => 'Create Data Banner'
+            'title' => 'Create Data Location'
         ]);
     }
 
@@ -49,23 +49,27 @@ class BannerController extends Controller
      */
     public function store(Request $request)
     {
-         $validatedData = $request->validate([
+          $validatedData = $request->validate([
+            'title' => 'required',
+            'phone_number' => 'required',
+            'instagram' => 'required',
+            'link' => 'required',
             'detail' => 'required|max:1000',
+            'email' => 'required|email:dns',
             'image' => 'required|image|max:2048',
         ]);
         
 
         $input = $request->all();
         if ($image = $request->file('image')) {
-            $destinationPath = 'banner/';
+            $destinationPath = 'location/';
             $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
             $image->move($destinationPath, $profileImage);
             $input['image'] = "$profileImage";
         }
 
-        Banner::create($input);
-        return redirect('/banners')->with('success', 'New Banner has been Added');
-
+        Location::create($input);
+        return redirect('/location')->with('success', 'New Location has been Added');
     }
 
     /**
@@ -85,14 +89,9 @@ class BannerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Banner $banner)
+    public function edit($id)
     {
-           return view('bakery.banners.edit', [
-            'users' => auth()->user(),
-            'data' => $banner,
-            'banner' => Banner::all(),
-            'title' => 'Create Data User'
-        ]);
+        //
     }
 
     /**
@@ -102,28 +101,9 @@ class BannerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Banner $banner)
+    public function update(Request $request, $id)
     {
-        $validatedData = $request->validate([
-            'detail' => 'required|max:1000',
-        ]);
-        
-
-        $input = $request->except(['_token', '_method' ]);
-      
-        if ($image = $request->file('image')) {
-            $destinationPath = 'banner/';
-            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
-            $image->move($destinationPath, $profileImage);
-            File::delete($destinationPath. $banner->image);
-            // unlink("banner/".$banner->image);
-            $input['image'] = "$profileImage";
-        }else{
-            unset($input['image']);
-        }
-
-        Banner::where('id', $banner->id)->update($input);
-        return redirect('/banners')->with('success', 'Banner Edit Success');
+        //
     }
 
     /**
@@ -132,15 +112,8 @@ class BannerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Banner $banner)
+    public function destroy($id)
     {
-        if($banner->image){
-            File::delete('banner/'. $banner->image);
-
-        }
-
-        Banner::destroy($banner->id);
-        return redirect('/banners')->with('success', 'Banner Delete Success');
-
+        //
     }
 }
