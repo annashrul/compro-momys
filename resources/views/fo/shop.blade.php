@@ -11,7 +11,7 @@
                 <div class="col-6 col-xs-6 col-lg-3 col-sm-6" data-aos="<?=$i%2==0?'flip-right':'fade-left'?>" >
                     <div class="product-card">
                         <div class="product-item-img">
-                            <img src="<?=$row['images'][0]?>"  onerror="this.onerror=null;this.src='images/produk/1.png';" alt="blog-bg-image" />
+                            <img src="/image/<?=$row['images'][0]?>"  onerror="this.onerror=null;this.src='images/produk/1.png';" alt="blog-bg-image" />
                             {{--<p style="display: <?=$i%2==0?'block':'none'?>" class="tag">NEW</p>--}}
                         </div>
                         <div class="row wrap-content-product">
