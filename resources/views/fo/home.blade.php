@@ -7,11 +7,7 @@
     <div class="container-fluid p-0" style="position: relative;height:auto;">
         <img style="object-fit: cover;" src="<?=$row['image']?>" onerror="this.onerror=null;this.src='https://wallpaperaccess.com/full/109672.jpg';" alt="Images" class="banner-img">
         <div  class="wrap-text-banner">
-            <b class="fs-50 fw-bold"><?=substr($row['detail'],0,30)?></b><br/>
-            <b><?=$row['detail']?></b><br/><br/>
-            <a href="#" class="default-btn btn-bg-two">SEND COOKIES</a>
-            {{--<b><?=substr($row['detail'],0,30)?></b>--}}
-            {{--<a href="#" class="default-btn btn-bg-two">SEND BAKERYS</a>--}}
+            <h4><?=$row['detail']?></h4>
         </div>
     </div>
     <?php endforeach;?>
@@ -29,15 +25,16 @@
             <div class="col-6 col-xs-6 col-lg-4 col-sm-6" data-aos="<?=$i%2==0?'flip-right':'fade-left'?>" >
                 <div class="product-card">
                     <div class="product-item-img">
-                        <img src="<?=$row['images'][0]?>"  onerror="this.onerror=null;this.src='{{asset("images/produk/1.png")}}';" alt="blog-bg-image" />
+                        <img style="border-radius: 10px" src="/image/{{ $row['images'][0] }}"  onerror="this.onerror=null;this.src='{{asset("images/produk/1.png")}}';" alt="blog-bg-image" />
                         {{--<p style="display: <?=$i%2==0?'block':'none'?>" class="tag">NEW</p>--}}
                     </div>
+                    <br>
                     <div class="row wrap-content-product">
                         <div class="col-12 col-xs-12 col-md-8">
                             <p class="fw-bold"><?=$row['title']?></p>
                         </div>
                         <div class="col-12 col-xs-12 col-md-4">
-                            <p class="fw-500" ><?=$row['price']?></p>
+                            <p class="fw-500" style="float: right" ><?=$row['price']?></p>
                         </div>
                         <div class="col-12">
                             <button class="default-btn btn-bg-two"  style="float: right" onclick="showDetail('<?=$i?>')">Order</button>

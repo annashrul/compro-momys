@@ -7,12 +7,12 @@ use App\Models\Banner;
 use App\Models\Products;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Request;
+use App\Models\Location;
 
 class HomeController extends Controller
 {
     public function index(){
         $data['pages']="home";
-
         $data['card'] = [
             [
                 "title"=>"THE SWEETEST GIFT",
@@ -30,32 +30,50 @@ class HomeController extends Controller
                 "img"=>"https://cdn.shopify.com/s/files/1/0100/4575/1377/files/LetsChat-Illustration.png?v=1657150077&width=352"
             ]
         ];
-//        $data['footer']=;
-        $product=Products::paginate(6);
-        foreach ($product as $row){
-            $images    = DB::table('image_products')->where('product_id','=',$row["id"])->select('image')->get();
-            $result    = $images->toArray();
-            $resultImg =[];
-            if($result!=null){
-                foreach ($result as $img){
-                    $resultImg[]=$img->image;
-                }
-            }else{
-                $resultImg[]=asset('images/produk/1.png');
-            }
-            $row->images= $resultImg;
-            $row->price = number_format($row["price"]);
-        }
         $data['banner'] = Banner::paginate(3);
+        $product=$this->getProduct(false);
         $data['product']= $product;
 
         return view('fo.home',$data);
     }
 
-
     public function shop(){
         $data['pages']="shop";
-        $product=Products::all();
+        $product=$this->getProduct();
+        $data['product']= $product;
+        return view('fo.shop',$data);
+    }
+    public function location($param=null){
+        $data['pages']="location store";
+        $data['param']=$param;
+        if($param==null){
+            $view='index';
+            $data['result']=Location::all();
+        }else{
+            $view='detail';
+            $data['result']=Location::where('title', '=', $param)->first();
+        }
+//        var_dump($data);
+        return view('fo.location.'.$view,$data);
+    }
+    public function about(){
+        $data['pages']="about";
+        return view('fo.about',$data);
+    }
+    public function contact(){
+        $data['pages']="contact";
+        return view('fo.contact',$data);
+    }
+
+
+
+    public function getProduct($isAll=true){
+        if($isAll){
+            $product=Products::all();
+        }
+        else{
+            $product=Products::paginate(6);
+        }
         foreach ($product as $row){
             $images    = DB::table('image_products')->where('product_id','=',$row["id"])->select('image')->get();
             $result    = $images->toArray();
@@ -70,11 +88,7 @@ class HomeController extends Controller
             $row->images= $resultImg;
             $row->price = number_format($row["price"]);
         }
-        $data['product']= $product;
-        return view('fo.shop',$data);
-    }
-    public function location(){
-        $data['pages']="location store";
-        return view('fo.location',$data);
+        return $product;
     }
 }
+
