@@ -9,12 +9,9 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\ImageProductController;
-<<<<<<< HEAD
 
 
 
-=======
->>>>>>> d29defad4bcef44fc7ef69231abefcff7e4f163d
 
 /*
 |--------------------------------------------------------------------------

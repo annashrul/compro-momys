@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ImageProduct;
 use App\Models\Products;
-use App\Models\ImageProduct;
+
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -117,6 +117,7 @@ class ProductController extends Controller
      */
     public function destroy(Products $products)
     {
+        ImageProduct::where('product_id', '=', $products->id)->delete();
         Products::destroy($products->id);
         return redirect('/products')->with('success', 'Data product has been deleted');
     }
