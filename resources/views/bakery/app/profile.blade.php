@@ -9,7 +9,7 @@
 	<div class="row page-titles mx-0">
 		<div class="col-sm-6 p-md-0">
 			<div class="welcome-text">
-				<h4>Hi, welcome back $users->fname</h4>
+				<h4>Hi, welcome back {{$users->fname}}</h4>
 				<p class="mb-0">Your detail profile</p>
 			</div>
 		</div>
@@ -37,7 +37,7 @@
 					<div class="profile-info">
 						<div class="profile-photo">
 							@if ($users->image)
-							<img src="{{ asset('storage/'. $users->image) }}" class="img-fluid rounded-circle" alt="">
+							<img src="{{ asset('images/'. $users->image) }}" class="img-fluid rounded-circle" alt="">
 							@else
 							<img src="{{ asset('/images/profile.png') }}" class="img-fluid rounded-circle" alt="">
 							@endif

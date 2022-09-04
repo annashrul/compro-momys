@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Products;
+use App\Models\Banner;
+use App\Models\Location;
+
 use Illuminate\Support\Facades\Password;
 
 class AdminController extends Controller
@@ -12,12 +16,23 @@ class AdminController extends Controller
     public function dashboard_1()
     {
 
-        $page_title = 'Dashboard Light';
+        $page_title = 'Dashboard';
         $page_description = 'Some description for the page';
         $action = __FUNCTION__;
+        $user = User::count();
+        $banner = Banner::count();
+        $location = Location::count();
+        $product = Products::count();
 
         return view('bakery.dashboard.index', [
-            'users' => auth()->user()
+            'users' => auth()->user(),
+            'title' => $page_title,
+            'description'=> $page_description,
+            'user' => $user,
+            'banner' => $banner,
+            'location' => $location,
+            'product' => $product,
+
         ]);
     }
 
