@@ -31,7 +31,7 @@ class HomeController extends Controller
             ]
         ];
 //        $data['footer']=;
-        $product=Products::paginate(12);
+        $product=Products::paginate(6);
         foreach ($product as $row){
             $images    = DB::table('image_products')->where('product_id','=',$row["id"])->select('image')->get();
             $result    = $images->toArray();
