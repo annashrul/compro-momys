@@ -53,7 +53,6 @@ class HomeController extends Controller
             $view='detail';
             $data['result']=Location::where('title', '=', $param)->first();
         }
-//        var_dump($data);
         return view('fo.location.'.$view,$data);
     }
     public function about(){
@@ -66,6 +65,18 @@ class HomeController extends Controller
     }
 
 
+
+    public function countProductVisitor(){
+        $getVisitor = Products::where('id', $_POST['id'])->first();
+        if($getVisitor!=null){
+            $getVisitor["visitor_count"]=$getVisitor["visitor_count"]+1;
+            $update=Products::where('id', $_POST['id'])->update(array("visitor_count"=>$getVisitor["visitor_count"]));
+            echo json_encode(array("msg"=>$update,'data'=>$getVisitor["visitor_count"]));
+        }
+        else{
+            echo json_encode(array("msg"=>0,'data'=>null));
+        }
+    }
 
     public function getProduct($isAll=true){
         if($isAll){

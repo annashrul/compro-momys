@@ -142,3 +142,4 @@ Route::get('/pages/location', [\App\Http\Controllers\fo\HomeController::class, '
 Route::get('/pages/about', [\App\Http\Controllers\fo\HomeController::class, 'about']);
 Route::get('/pages/contact', [\App\Http\Controllers\fo\HomeController::class, 'contact']);
 Route::get('/pages/location/{slug}', [\App\Http\Controllers\fo\HomeController::class, 'location']);
+Route::post('/pages/product/count/{slug}', [\App\Http\Controllers\fo\HomeController::class, 'countProductVisitor']);

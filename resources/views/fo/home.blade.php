@@ -7,7 +7,9 @@
     <div class="container-fluid p-0" style="position: relative;height:auto;">
         <img style="object-fit: cover;" src="<?=$row['image']?>" onerror="this.onerror=null;this.src='https://wallpaperaccess.com/full/109672.jpg';" alt="Images" class="banner-img">
         <div  class="wrap-text-banner">
-            <h4><?=$row['detail']?></h4>
+            <b class="fs-50 fw-bold"><?=substr($row['title'],0,30)?></b><br/>
+            <b><?=$row['detail']?></b><br/><br/>
+            <a href="#" class="default-btn btn-bg-two">SEND COOKIES</a>
         </div>
     </div>
     <?php endforeach;?>

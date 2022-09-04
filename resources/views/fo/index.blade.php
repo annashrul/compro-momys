@@ -15,6 +15,8 @@ $footer=[
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
+
     {{--<link rel="stylesheet" href="<?=$urlCss.'bootstrap.min.css'?>">--}}
     <link rel="stylesheet" href="{{asset($urlCss."bootstrap.min.css")}}">
     <link rel="stylesheet" href="{{asset($urlCss."animate.min.css")}}">
@@ -151,32 +153,54 @@ $footer=[
         return $(`#${id}`);
     }
     function showDetail(index){
-        console.log(datas);
+        let baseUrl="{!! url("pages/product/count/"); !!}";
+        const imgLoading='{{asset("fo/spin.svg")}}';
         idxProduct=index;
         let res=datas['data']===undefined?datas[index]:datas['data'][index];
-        $('.modalDetailProduct').modal("show");
-        setId('titleProduct').html(res.title);
-        console.log(res.images[0])
-        let html=`<img id="main${res.id}" src="/image/${res.images[0]}"  style="margin-bottom: 10px;border-radius: 10px"/>`;
-        if(res.images.length>1){
-            html+='<div class="row">';
-            res.images.forEach((row,key)=>{
-                html+='<div class="col-3 col-xs-3 col-md-2"  style="cursor: pointer" onclick="setImages('+key+')">';
-                html+='<img src="'+row+'" id="row'+key+'" style="width: 100%;height: 100%;border-radius: 10px"/>';
-                html+='</div>';
-            });
-            html+='</div>';
-            html+='<hr/>';
-        }
-        html+='<div style="justify-content: space-between;display: flex">';
-        html+='<h4>'+res.tagline+'</h4>';
-        html+='<h4>Rp. '+res.price+',-</h4>';
-        html+='</div>';
-        html+='<p>'+res.content+'</p>';
-        setId('resultProduct').html(html);
-        setTimeout(function(){
-            setIsActiveImages(0,true);
-        },200)
+        $.ajax({
+            url:baseUrl+"/"+res['id'],
+            type:"POST",
+            dataType:"JSON",
+            data:{id:res['id']},
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            beforeSend: function() {$('body').append('<div class="first-loader"><img src="'+imgLoading+'"></div>')},
+            complete  : function() {$('.first-loader').remove()},
+            success:function(e){
+                if(e.msg){
+                    $('.modalDetailProduct').modal("show");
+                    setId('titleProduct').html(res.title);
+
+                    let html=`<img id="main${res.id}" src="/image/${res.images[0]}"  style="margin-bottom: 10px;border-radius: 10px"/>`;
+                    if(res.images.length>1){
+                        html+='<div class="row">';
+                        res.images.forEach((row,key)=>{
+                            html+='<div class="col-3 col-xs-3 col-md-2"  style="cursor: pointer" onclick="setImages('+key+')">';
+                            html+='<img src="/image/'+row+'" id="row'+key+'" style="width: 100%;height: 100%;border-radius: 10px"/>';
+                            html+='</div>';
+                        });
+                        html+='</div>';
+                        html+='<hr/>';
+                    }
+                    html+='<div style="justify-content: space-between;display: flex">';
+                    html+='<h4>'+res.tagline+'</h4>';
+                    html+='<h4>Rp. '+res.price+',-</h4>';
+                    html+='</div>';
+                    html+='<p>'+res.content+'</p>';
+                    html+='<hr/>';
+                    html+='<p>visitor count : '+e.data+' orang</p>';
+                    setId('resultProduct').html(html);
+                    setTimeout(function(){
+                        setIsActiveImages(0,true);
+                    },200)
+                }
+                else{
+                    alert("failed")
+                }
+            }
+        })
+
     }
 
     function setImages(key){
