@@ -26,7 +26,7 @@
         </div>
         <div class="row pt-45">
             <?php foreach($product as $i=>$row): ?>
-            <div class="col-6 col-xs-6 col-lg-3 col-sm-6" data-aos="<?=$i%2==0?'flip-right':'fade-left'?>" >
+            <div class="col-6 col-xs-6 col-lg-4 col-sm-6" data-aos="<?=$i%2==0?'flip-right':'fade-left'?>" >
                 <div class="product-card">
                     <div class="product-item-img">
                         <img src="<?=$row['images'][0]?>"  onerror="this.onerror=null;this.src='{{asset("images/produk/1.png")}}';" alt="blog-bg-image" />
@@ -57,9 +57,7 @@
             <p class="sp-color2">Baking hobbyists Pam Weekes & Connie McDonald started Levain to sell fresh-baked breads. In 1995, they whipped up a batch of big chocolate chip walnut BAKERYs, and their neighborhood shop became so much more. “The BAKERY” earned a spot in the hearts of locals and visitors alike, taking on a life of its own as a New York City icon. Nearly 30 years later, not much has changed — we’re still baking beloved BAKERYs with simple ingredients and a lot of love.</p>
         </div>
         <div class="row pt-45 pr-10 pl-10">
-            <div class="col-lg-6 p-0">
-                <img class="img-story" src="https://cdn.shopify.com/s/files/1/0100/4575/1377/files/50-50-Homepage_1400x.jpg?v=1655342627" alt="Images">
-            </div>
+
             <div class="col-lg-6 wrap-text-story">
                 <h2 class="text-center">WE’RE BAKERY PEOPLE, BUT ALSO PEOPLE PEOPLE
                 </h2><br/>
@@ -67,6 +65,9 @@
                     Stop by for a fresh-out-of-the-oven BAKERY if you’re in the neighborhood — you’ll smell when you’re close :)
                 </p>
                 <a href="#" class="default-btn btn-bg-two">FIND A BAKERY</a>
+            </div>
+            <div class="col-lg-6 p-0">
+                <img class="img-story" src="https://cdn.shopify.com/s/files/1/0100/4575/1377/files/50-50-Homepage_1400x.jpg?v=1655342627" alt="Images">
             </div>
 
         </div>
