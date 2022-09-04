@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ImageProduct;
 use App\Models\Products;
+
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -60,8 +62,14 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Products $products, ImageProduct $imageProduct)
     {
+        return view('bakery.products.uploadImage', [
+            'users' => auth()->user(),
+            'imageproduct' => ImageProduct::all(),
+            'product' => $products,
+            'title' => "Upload Image Product"
+        ]);
     }
 
     /**
@@ -75,7 +83,7 @@ class ProductController extends Controller
         return view('bakery.products.edit', [
             'users' => auth()->user(),
             'product' => $products,
-            'title' => 'Edit Data Product'
+            'title' => 'Data Product'
         ]);
     }
 
@@ -109,6 +117,7 @@ class ProductController extends Controller
      */
     public function destroy(Products $products)
     {
+        ImageProduct::where('product_id', '=', $products->id)->delete();
         Products::destroy($products->id);
         return redirect('/products')->with('success', 'Data product has been deleted');
     }

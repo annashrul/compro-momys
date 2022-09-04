@@ -14,7 +14,7 @@
 			<h4 class="card-title">{{$title}}</h4>
 		</div>
 		<div class="col-lg-6">
-			<a href="/products/create" class="btn btn-primary m-4">Add New Product</a>
+			<a href="/image_product/{{$id}}" class="btn btn-primary m-4">Add Image</a>
 		</div>
 		@if (session()->has('success'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -28,19 +28,15 @@
 					<thead>
 						<tr>
 							<th><strong>Key</strong></th>
-							<th><strong>Title</strong></th>
-							<th><strong>Tagline</strong></th>
-							<th><strong>Price</strong></th>
-							<th><strong>Action</strong></th>
+							<th>Image</th>
 						</tr>
 					</thead>
 					<tbody>
-						@foreach ($product as $prd)
+						@foreach ($data as $prd)
 						<tr>
 							<td><strong>{{ $loop->iteration }}</strong></td>
-							<td><div class="d-flex align-items-center"><span class="w-space-no">{{ $prd->title }}</span></div></td>
-							<td>{{ $prd->tagline }}</td>
-							<td>{{ $prd->price }}</td>
+							<td><div class="d-flex align-items-center"><span class="w-space-no">{{ $prd->image }}</span></div></td>
+
 							<td>
 								<div class="d-flex">
 									<a href="/products/{{ $prd->id }}/edit" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fas fa-pencil-alt"></i></a>
@@ -57,7 +53,7 @@
 					</tbody>
 				</table>
 				<div class="d-flex justify-content-right">
-					{!! $product->links() !!}
+					{!! $data->links() !!}
 				</div>
 			</div>
 		</div>

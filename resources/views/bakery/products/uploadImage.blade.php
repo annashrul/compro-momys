@@ -14,7 +14,7 @@
 			<h4 class="card-title">{{$title}}</h4>
 		</div>
 		<div class="col-lg-6">
-			<a href="/products/create" class="btn btn-primary m-4">Add New Product</a>
+			<a href="/products/{{ $product->id }}/add-image" class="btn btn-primary m-4">Add Image Product</a>
 		</div>
 		@if (session()->has('success'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -28,24 +28,22 @@
 					<thead>
 						<tr>
 							<th><strong>Key</strong></th>
-							<th><strong>Title</strong></th>
-							<th><strong>Tagline</strong></th>
-							<th><strong>Price</strong></th>
+							<th><strong>Image</strong></th>
+							<th><strong>Name Image</strong></th>
+							<th><strong>Product_id</strong></th>
 							<th><strong>Action</strong></th>
 						</tr>
 					</thead>
 					<tbody>
-						@foreach ($product as $prd)
+						@foreach ($imageproduct as $ip)
 						<tr>
 							<td><strong>{{ $loop->iteration }}</strong></td>
-							<td><div class="d-flex align-items-center"><span class="w-space-no">{{ $prd->title }}</span></div></td>
-							<td>{{ $prd->tagline }}</td>
-							<td>{{ $prd->price }}</td>
+							<td><img src="/image/{{ $ip->image }}" alt="" style="width: 50px"></td>
+							<td><div class="d-flex align-items-center"><span class="w-space-no">{{ $ip->image }}</span></div></td>
+							<td>{{ $ip->product_id }}</td>
 							<td>
 								<div class="d-flex">
-									<a href="/products/{{ $prd->id }}/edit" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fas fa-pencil-alt"></i></a>
-									<a href="/products/{{ $prd->id }}" class="btn btn-success shadow btn-xs sharp me-1"><i class="fas fa-eye"></i></a>
-									<form action="/products/{{ $prd->id }}" method="POST">
+									<form action="/products/{{ $product->id }}/add-image/{{ $ip->id }}" method="POST">
 										@method('delete')
 										@csrf
 										<button class="btn btn-danger shadow btn-xs sharp" onclick="return confirm('Are you sure?')"><i class="fa fa-trash"></i></button>
@@ -57,7 +55,6 @@
 					</tbody>
 				</table>
 				<div class="d-flex justify-content-right">
-					{!! $product->links() !!}
 				</div>
 			</div>
 		</div>

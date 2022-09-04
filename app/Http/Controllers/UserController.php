@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Role;
+use Facade\FlareClient\Stacktrace\File;
 use Illuminate\Contracts\Support\ValidatedData;
+use Illuminate\Support\Facades\File as FacadesFile;
 
 class UserController extends Controller
 {
@@ -92,7 +94,6 @@ class UserController extends Controller
     {
 
         return view('bakery.users.edit', [
-
             'users' => auth()->user(),
             'user' => $user,
             'roles' => Role::all(),
@@ -149,6 +150,10 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
+        // if ($user->image !== null | $user->image !== "") {
+        //     File::delete('image', $user->image);
+        // }
+
         User::destroy($user->id);
         return redirect('/users')->with('success', 'User has been Deleted');
     }
