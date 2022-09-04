@@ -69,7 +69,7 @@ class LocationController extends Controller
         }
 
         Location::create($input);
-        return redirect('/location')->with('success', 'New Location has been Added');
+        return redirect('/locations')->with('success', 'New Location has been Added');
     }
 
     /**
@@ -89,9 +89,13 @@ class LocationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Location $location)
     {
-        //
+         return view('bakery.location.edit', [
+            'users' => auth()->user(),
+            'data' => $location,
+            'title' => 'Edit Data Location'
+        ]);
     }
 
     /**
@@ -101,9 +105,29 @@ class LocationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Location $location)
     {
-        //
+         $validatedData = $request->validate([
+            'title' => 'required',
+            'phone_number' => 'required',
+            'instagram' => 'required',
+            'link' => 'required',
+            'detail' => 'required|max:1000',
+            'email' => 'required|email:dns',
+        ]);
+
+         if ($image = $request->file('image')) {
+            $destinationPath = 'location/';
+            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $profileImage);
+            $validatedData['image'] = "$profileImage";
+        } else {
+            unset($validatedData['image']);
+        }
+
+        Location::where('id', $location->id)->update($validatedData);
+        return redirect('/locations')->with('success', 'Location Has Ben Updated');
+
     }
 
     /**
@@ -112,8 +136,14 @@ class LocationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Location $location)
     {
-        //
+        if($location->image){
+            File::delete('location/'.$location->image);
+        }
+
+        Location::destroy($location->id);
+        return redirect('/locations')->with('success', 'Location Has Ben Deleted');
+
     }
 }
