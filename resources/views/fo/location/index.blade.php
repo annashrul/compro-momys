@@ -12,7 +12,7 @@
     <div class="container">
         <div class="row">
             <?php foreach($result as $i=>$row): ?>
-                <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="col-lg-4 col-md-4 col-sm-6">
                     <div class="location-item">
                         <div class="location-image">
                             <img src="/location/<?=$row['image']?>" alt="" />
