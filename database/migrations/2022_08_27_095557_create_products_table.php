@@ -20,7 +20,7 @@ class CreateProductsTable extends Migration
             $table->text('content');
             $table->integer('price');
             $table->string('weight');
-            $table->integer('visitor_count');
+            $table->integer('visitor_count')->nullable();
             $table->unsignedBigInteger('user_id')->nullable();
             
             $table->timestamps();
