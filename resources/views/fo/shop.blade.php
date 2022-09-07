@@ -8,12 +8,12 @@
             </div>
             <div class="row pt-45">
                 <?php foreach($product as $i=>$row): ?>
-                <div class="col-6 col-xs-6 col-lg-3 col-sm-6" data-aos="<?=$i%2==0?'flip-right':'fade-left'?>" >
+                <div class="col-6 col-xs-6 col-lg-4 col-sm-6" data-aos="<?=$i%2==0?'flip-right':'fade-left'?>" >
                     <div class="product-card">
                         <div class="product-item-img">
-                            <img src="/image/<?=$row['images'][0]?>"  onerror="this.onerror=null;this.src='images/produk/1.png';" alt="blog-bg-image" />
-                            {{--<p style="display: <?=$i%2==0?'block':'none'?>" class="tag">NEW</p>--}}
+                            <img  style="border-radius: 10px" src="/image/<?=$row['images'][0]?>"  onerror="this.onerror=null;this.src='images/produk/1.png';" alt="blog-bg-image" />
                         </div>
+                        <br>
                         <div class="row wrap-content-product">
                             <div class="col-12 col-xs-12 col-md-8">
                                 <p class="fw-bold"><?=$row['title']?></p>

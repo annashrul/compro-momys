@@ -28,7 +28,6 @@
                 <div class="product-card">
                     <div class="product-item-img">
                         <img style="border-radius: 10px" src="/image/{{ $row['images'][0] }}"  onerror="this.onerror=null;this.src='{{asset("images/produk/1.png")}}';" alt="blog-bg-image" />
-                        {{--<p style="display: <?=$i%2==0?'block':'none'?>" class="tag">NEW</p>--}}
                     </div>
                     <br>
                     <div class="row wrap-content-product">

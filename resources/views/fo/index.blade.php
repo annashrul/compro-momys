@@ -32,6 +32,7 @@ $footer=[
 
     <script src="{{asset($urlJs.'jquery.min.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
 </head>
 <body>
 
@@ -227,6 +228,7 @@ $footer=[
         let message=`Hallo admin.. ${enter}saya pesan *${res.title} - Rp. ${res.price},-* yaaaaah${enter}Terimakasih ...`;
         window.open("https://api.whatsapp.com/send/?phone=6281223165037&text="+message,"_blank")
     }
+
 
 </script>
 

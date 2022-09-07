@@ -19,7 +19,7 @@
                     <form id="form_contact">
                         <div class="form-group">
                             <label for="">Email</label>
-                            <input type="email" name="email" class="form-control" required/>
+                            <input type="email" name="email" class="form-control" required title="ads"/>
                         </div>
                         <br>
                         <div class="form-group">
@@ -27,14 +27,15 @@
                             <textarea style="height: 161px;" name="message" id="" class="form-control" required></textarea>
                         </div><br>
                         <div class="form-group">
-
-                            <button type="submit" class="default-btn btn-bg-two"  style="float: right" id="btn_send">Send</button>
+                            <button type="submit" class="btn btn-primary"  style="background-color: transparent;border:1px solid white;color:white;float: right" id="btn_send">Send</button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
+    <script src="{{asset('fo/js/jquery.min.js')}}"></script>
+
 
     <script>
         $("#form_contact").on('submit',function(e){
