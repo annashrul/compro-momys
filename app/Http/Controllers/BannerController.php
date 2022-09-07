@@ -50,6 +50,7 @@ class BannerController extends Controller
     public function store(Request $request)
     {
          $validatedData = $request->validate([
+            'title' => 'required',
             'detail' => 'required|max:1000',
             'image' => 'required|image|max:2048',
         ]);
@@ -105,6 +106,7 @@ class BannerController extends Controller
     public function update(Request $request, Banner $banner)
     {
         $validatedData = $request->validate([
+            'title' => 'required',
             'detail' => 'required|max:1000',
         ]);
         
