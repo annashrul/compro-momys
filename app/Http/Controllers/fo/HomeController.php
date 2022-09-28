@@ -55,6 +55,10 @@ class HomeController extends Controller
         }
         return view('fo.location.'.$view,$data);
     }
+    public function portofolio(){
+        $data['pages']="portofolio";
+        return view('fo.portofolio',$data);
+    }
     public function about(){
         $data['pages']="about";
         return view('fo.about',$data);

@@ -5,7 +5,7 @@
 <div data-aos="fade-out" data-aos-duration="4000" class="banner-area-two owl-carousel owl-theme" style="width:100%;">
     <?php foreach ($banner as $row):?>
     <div class="container-fluid p-0" style="position: relative;height:auto;">
-        <img style="object-fit: cover;" src="<?=$row['image']?>" onerror="this.onerror=null;this.src='https://wallpaperaccess.com/full/109672.jpg';" alt="Images" class="banner-img">
+        <img style="object-fit: cover;" src="/banner/<?=$row['image']?>" onerror="this.onerror=null;this.src='https://wallpaperaccess.com/full/109672.jpg';" alt="Images" class="banner-img">
         <div  class="wrap-text-banner">
             <b class="fs-50 fw-bold"><?=substr($row['title'],0,30)?></b><br/>
             <b><?=$row['detail']?></b><br/><br/>
@@ -15,7 +15,7 @@
     <?php endforeach;?>
 </div>
 {{-- *************** PRODUCT **************--}}
-<div class="pt-100 pb-70"  data-aos="fade-in" data-aos-duration="4000" style="background-color: #286389!important;">
+<div class="pt-100 pb-70 base-color"  data-aos="fade-in" data-aos-duration="4000">
     <div class="container">
         <div class="section-title text-center">
             <h2>NOT JUST A BAKERY, BUT *THE* BAKERY</h2><br/>
@@ -48,8 +48,8 @@
     </div>
 </div>
 {{-- *************** STORY **************--}}
-<section class="pb-70"  data-aos="fade-down" data-aos-duration="4000" style="background-color: #286389!important;">
-    <div class="container" style="background-color: #286389!important;">
+<section class="pb-70 base-color"  data-aos="fade-down" data-aos-duration="4000">
+    <div class="container base-color">
         <div class="section-title text-center">
             <h2>THE STORY BEHIND THE BAKERY THAT BECAME A NEW YORK INSTITUTION</h2><br/>
             <p class="sp-color2">Baking hobbyists Pam Weekes & Connie McDonald started Levain to sell fresh-baked breads. In 1995, they whipped up a batch of big chocolate chip walnut BAKERYs, and their neighborhood shop became so much more. “The BAKERY” earned a spot in the hearts of locals and visitors alike, taking on a life of its own as a New York City icon. Nearly 30 years later, not much has changed — we’re still baking beloved BAKERYs with simple ingredients and a lot of love.</p>

@@ -2,8 +2,8 @@
 $urlCss = 'fo/css/';
 $urlJs = 'fo/js/';
 $logo="http://localhost:8000/images/logo-full-black.png";
-$menu=["Home",'Shop','Location Store','About','Contact'];
-$menuLink=["pages",'pages/shop','pages/location','pages/about','pages/contact'];
+$menu=["Home",'Shop','Location Store','Portofolio','About','Contact'];
+$menuLink=["pages",'pages/shop','pages/location','pages/portofolio','pages/about','pages/contact'];
 $footer=[
     ["0"=>["CORPORATE GIFTING","FAQ","GET IN TOUCH","ABOUT","PARTIES AND EVENTS","TERM OF SERVICE"]],
     ["1"=>["JOIN OUR TEAM","SHIPPING","PRIVACY","TERM OF USE","LOCAL DELIVERY OR PICK UP"]],
@@ -62,12 +62,12 @@ $footer=[
     <div class="main-nav">
         <nav class="navbar navbar-expand-md navbar-light">
             <div class="container">
-                <a class="navbar-brand" href="{!! url($menuLink[0]); !!}">
-                    <img src="<?=$logo?>" alt="logo_light" style="height: 50px;"/>
-                    <img src="<?=$logo?>" alt="logo-dark" style="height: 50px;"/>
-                </a>
-                <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
-                    <div class=" m-auto"></div>
+                {{--<a class="navbar-brand" href="{!! url($menuLink[0]); !!}">--}}
+                    {{--<img src="<?=$logo?>" alt="logo_light" style="height: 50px;"/>--}}
+                    {{--<img src="<?=$logo?>" alt="logo-dark" style="height: 50px;"/>--}}
+                {{--</a>--}}
+                <div class="collapse navbar-collapse mean-menu justify-content-center" id="navbarSupportedContent">
+
                     <ul class="nav navbar-nav">
                         <?php foreach ($menu as $key=>$row): ?>
                         <li class="nav-item ">

@@ -1,6 +1,6 @@
 @extends('fo/index')
 @section('content')
-    <div class=""  data-aos="fade-in" data-aos-duration="4000" style="margin-top: 150px;background-color: #286389!important;">
+    <div data-aos="fade-in" data-aos-duration="4000" style="margin-top: 150px;">
         <div class="container">
             <div class="section-title text-center">
                 <h2>NOT JUST A BAKERY, BUT *THE* BAKERY</h2><br/>
