@@ -147,7 +147,7 @@ $footer=[
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
     AOS.init();
-    let datas = <?=json_encode(isset($product)?$product:array())?>;
+    let datas= <?=json_encode(isset($product)?$product:array())?>;
     let idxImagesActive=0;
     let idxProduct=0;
     function setId(id){
@@ -172,13 +172,12 @@ $footer=[
                 if(e.msg){
                     $('.modalDetailProduct').modal("show");
                     setId('titleProduct').html(res.title);
-
-                    let html=`<img id="main${res.id}" src="/image/${res.images[0]}"  style="margin-bottom: 10px;border-radius: 10px"/>`;
+                    let html=`<img id="main${res.id}" src="/image/${res.images[0]}"  style="margin-bottom: 10px;border-radius: 6px"/>`;
                     if(res.images.length>1){
                         html+='<div class="row">';
                         res.images.forEach((row,key)=>{
                             html+='<div class="col-3 col-xs-3 col-md-2"  style="cursor: pointer" onclick="setImages('+key+')">';
-                            html+='<img src="/image/'+row+'" id="row'+key+'" style="width: 100%;height: 100%;border-radius: 10px"/>';
+                            html+='<img src="/image/'+row+'" id="row'+key+'" style="width: 100%;height: 100%;border-radius: 6px"/>';
                             html+='</div>';
                         });
                         html+='</div>';
@@ -208,7 +207,6 @@ $footer=[
         setIsActiveImages(idxImagesActive,false);
         idxImagesActive=key;
         let res=datas['data']===undefined?datas[idxProduct]:datas['data'][idxProduct];
-//        let res=datas['data'][idxProduct];
         let newImg=`/image/${res["images"][key]}`;
         setId(`main${res.id}`).attr('src',newImg);
         setTimeout(function(){
@@ -222,9 +220,7 @@ $footer=[
 
     function sendWa(){
         const enter="%0a";
-//        let res=datas['data'][idxProduct];
         let res=datas['data']===undefined?datas[idxProduct]:datas['data'][idxProduct];
-
         let message=`Hallo admin.. ${enter}saya pesan *${res.title} - Rp. ${res.price},-* yaaaaah${enter}Terimakasih ...`;
         window.open("https://api.whatsapp.com/send/?phone=6281223165037&text="+message,"_blank")
     }
