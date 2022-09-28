@@ -19,6 +19,15 @@
 				<form action="/banners/{{ $data->id }}" method="POST" enctype="multipart/form-data">
 					@method('put')
 					@csrf
+					<div class="form-group">
+                        <label class="mb-1" for="title"><strong>Title</strong></label>
+                        <input type="text" class="form-control @error('title') is-invalid @enderror" name="title" id="title" placeholder="" value="{{ old('title', $data->title) }}">
+                        @error('title')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                         @enderror
+                   </div>
 				        <div class="form-group">
                         <label class="mb-1" for="detail"><strong>Detail</strong></label>
                         <input type="text" class="form-control @error('detail') is-invalid @enderror" name="detail" id="detail" placeholder="" value="{{ old('detail',$data->detail ) }}">

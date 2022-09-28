@@ -19,7 +19,15 @@
 				<div class="col-lg-12">
 				<form action="/banners" method="POST" enctype="multipart/form-data">
 					@csrf
-                  
+                   <div class="form-group">
+                        <label class="mb-1" for="title"><strong>Title</strong></label>
+                        <input type="text" class="form-control @error('title') is-invalid @enderror" name="title" id="title" placeholder="" value="{{ old('title') }}">
+                        @error('title')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                         @enderror
+                   </div>
                     <div class="form-group">
                         <label class="mb-1" for="detail"><strong>Detail</strong></label>
                         <input type="text" class="form-control @error('detail') is-invalid @enderror" name="detail" id="detail" placeholder="" value="{{ old('detail') }}">
