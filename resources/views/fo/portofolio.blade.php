@@ -22,7 +22,8 @@
             justify-content: center;
             align-items: center;
             /*-webkit-box-shadow: 0 0 15px rgba(0, 0, 0, 0.9);*/
-            font-weight: bold;            border-radius: 10px;
+            font-weight: bold;
+            border-radius: 10px;
 
             /*-webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5)*/
 

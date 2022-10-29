@@ -92,6 +92,29 @@ $footer=[
         <div class="footer-top pt-100 pb-70">
             <div class="row">
                 <div class="col-12 col-xs-12 col-lg-6 pr-40">
+                    {{--<style>--}}
+                        {{--img {--}}
+                            {{--float: left;--}}
+                            {{--margin: 5px;--}}
+                        {{--}--}}
+
+                        {{--p {--}}
+                            {{--text-align: justify;--}}
+                        {{--}--}}
+                    {{--</style>--}}
+                    <div class="square">
+                        <div>
+                            <img src="<?=$logo?>" alt="logo_light" class="logo-footer"/>
+                        </div>
+
+                        <p style="color:white;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
+                            molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
+                            numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium
+                            optio, eaque rerum! Provident similique accusantium nemo autem.</p>
+
+                    </div>
+
+
                     <h3 style="line-height: 40px;color:white">WE BAKE EMAILS TOO. <br/>SIGN UP TO RECEIVE THE LATEST NEWS.</h3>
                     <br>
                     <div class="input-group">
