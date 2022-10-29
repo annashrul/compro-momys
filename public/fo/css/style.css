@@ -885,7 +885,7 @@ img.logo-footer{
 }
 @media only screen and (max-width: 425px){
     .square>p{
-        text-align: justify;
+        /*text-align: justify;*/
         font-size: 10px !important;
     }
     img.logo-footer{
