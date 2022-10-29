@@ -900,7 +900,7 @@ img.logo-footer{
     }
 
     .mean-bar{
-        border:1px solid green;
+        /* border:1px solid green; */
         z-index: 999;
         -webkit-backdrop-filter: blur(8px);
         backdrop-filter: blur(8px);
