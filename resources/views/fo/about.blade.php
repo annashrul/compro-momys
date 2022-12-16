@@ -14,7 +14,7 @@
                     <img style="border-radius: 10px"
                         src="https://cdn.shopify.com/s/files/1/0100/4575/1377/files/50-50-Homepage_1400x.jpg?v=1655342627" />
                 </div>
-                <div class="col-md-8" style="">
+                <div class="col-md-8" style="padding:0px">
                     Sebelum Tahun 2010 ada Bakery Langganan yang sangat Membantu Memecahkan Masalah Ketika kita Ingin
                     Berbagi ke Tetangga, Saudara atau Relasi2. Kualitas Premium dengan Harga Dapat diterima Pasar Menengah.
                     Ukuran yang Mini kami Menyebutnya (Tidak Besar & Tidak Kecil(Unyil)).

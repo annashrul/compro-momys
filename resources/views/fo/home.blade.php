@@ -1,12 +1,26 @@
 @extends('fo/index')
 @section('content')
-
+    <style>
+        @media only screen and (max-width: 425px){
+            .wrap-text-banner{
+                width: 100% !important;
+                padding-top: -10px;
+            }
+        }
+        @media only screen and (min-width: 425px) and (max-width: 600px){
+            .wrap-text-banner{
+                width: 90% !important;
+                padding-top: -10px;
+                margin-left: 20% !important;
+            }
+        }
+    </style>
 {{-- *************** BANNER **************--}}
 <div data-aos="fade-out" data-aos-duration="4000" class="banner-area-two owl-carousel owl-theme" style="width:100%;">
     <?php foreach ($banner as $row):?>
     <div class="container-fluid p-0" style="position: relative;height:auto;">
         <img style="object-fit: cover;" src="/banner/<?=$row['image']?>" onerror="this.onerror=null;this.src='https://wallpaperaccess.com/full/109672.jpg';" alt="Images" class="banner-img">
-        <div  class="wrap-text-banner">
+        <div class="wrap-text-banner">
             <b class="fs-50 fw-bold"><?=substr($row['title'],0,30)?></b><br/>
             <b><?=$row['detail']?></b><br/><br/>
             <a href="#" class="default-btn btn-bg-two">SEND COOKIES</a>
