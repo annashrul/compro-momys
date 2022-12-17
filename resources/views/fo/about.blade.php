@@ -27,7 +27,7 @@
                     <p>Atas izin Allah Momis Bakery mulai ada Pesanan Snack Box Mulai dari belasan Box sampai Ribuan Box
                         untuk Acara Wisuda. Karena Mencari Pelanggan itu Tidak Mudah, Kami benar – benar sangat Menjaga
                         Kualitas Produk & Pelayanan terhadap Konsumen. Pada saat tim belum banyak, Pelayanan dilakukan
-                        lanagsung oleh Founder. Berbeda dengan Para Kompetitor yang sudah didelegasikan ke Tim</p>
+                        langsung oleh Founder. Berbeda dengan Para Kompetitor yang sudah didelegasikan ke Tim</p>
 
                 </div>
             </div>
