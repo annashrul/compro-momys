@@ -886,11 +886,10 @@ img.logo-footer{
 @media only screen and (max-width: 425px){
     .square>p{
         /*text-align: justify;*/
-        font-size: 10px !important;
+        font-size: 12px !important;
     }
     img.logo-footer{
-
-        height: 80px;
+        height: 120px !important;
     }
     .mobile-nav-icon{
         display: block;
@@ -900,6 +899,7 @@ img.logo-footer{
     }
 
     .mean-bar{
+
         /* border:1px solid green; */
         z-index: 999;
         -webkit-backdrop-filter: blur(8px);
@@ -908,6 +908,7 @@ img.logo-footer{
         /*background-color: #062B3C!important;*/
     }
     .sticky-nav>.mean-bar {
+
         background:#062B3C!important;
         -webkit-animation: slideInDown 500ms ease-in-out 0s normal none 1 running;
         animation: slideInDown 500ms ease-in-out 0s normal none 1 running;
@@ -919,9 +920,11 @@ img.logo-footer{
         /*!*background-color: black!important;*!*/
     /*}*/
     .mean-container a.meanmenu-reveal {
+        /*border:1px solid red;*/
         width: 35px;
         height: 30px;
-        padding: 12px 15px 0 0;
+        padding: 12px 0 0 0;
+        margin-top: 10px !important;
         position: absolute;
         right: 0;
         cursor: pointer;

@@ -9,9 +9,9 @@
             </div>
             <br>
             <div class="row d-flex justify-content-start" style="position: relative">
-                <div class="col-6 mx-auto">
+                <div class="col-12 col-md-6 mx-auto">
                     <div class="text-center">
-                        <img style="border-radius: 10px" src="http://localhost:8000/images/logo-full-black.png"/>
+                        <img style="border-radius: 10px" src="{{asset('images/logo-full-black.png')}}"/>
                     </div>
                     <div class="alert alert-success" role="alert" id="notif" style="margin-top: 20px;display: none">
                         Data saved successfully

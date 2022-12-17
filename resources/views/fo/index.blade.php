@@ -2,6 +2,7 @@
 $urlCss = 'fo/css/';
 $urlJs = 'fo/js/';
 $logo = 'http://localhost:8000/images/logo-full-black.png';
+//$logo = "{{  asset() }}";
 $menu = ['Home', 'Shop', 'Location Store', 'Portofolio', 'About', 'Contact'];
 $menuLink = ['pages', 'pages/shop', 'pages/location', 'pages/portofolio', 'pages/about', 'pages/contact'];
 $footer = [['0' => ['CORPORATE GIFTING', 'FAQ', 'GET IN TOUCH', 'ABOUT', 'PARTIES AND EVENTS', 'TERM OF SERVICE']], ['1' => ['JOIN OUR TEAM', 'SHIPPING', 'PRIVACY', 'TERM OF USE', 'LOCAL DELIVERY OR PICK UP']]];
@@ -15,7 +16,7 @@ $footer = [['0' => ['CORPORATE GIFTING', 'FAQ', 'GET IN TOUCH', 'ABOUT', 'PARTIE
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
 
-    {{-- <link rel="stylesheet" href="<?= $urlCss . 'bootstrap.min.css' ?>"> --}}
+     {{--<link rel="stylesheet" href="{{ asset('images/logo-full-black.png') }}"> --}}
     <link rel="stylesheet" href="{{ asset($urlCss . 'bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset($urlCss . 'animate.min.css') }}">
     <link rel="stylesheet" href="{{ asset($urlCss . 'boxicons.min.css') }}" />
@@ -57,7 +58,7 @@ $footer = [['0' => ['CORPORATE GIFTING', 'FAQ', 'GET IN TOUCH', 'ABOUT', 'PARTIE
         <div class="mobile-nav">
             <a href="{!! url($menuLink[0]) !!}" class="logo">
                 {{-- <img src="<?= $logo ?>" class="logo-one h-50" alt="Logo"> --}}
-                <img src="<?= $logo ?>" alt="logo_light" class="h-50" />
+                <img src="{{ asset('images/logo-full-black.png') }}" alt="logo_light" class="h-50" style="margin-top: -2px;" />
                 {{-- <img src="<?= $logo ?>" alt="logo-dark" /> --}}
             </a>
         </div>
@@ -98,7 +99,7 @@ $footer = [['0' => ['CORPORATE GIFTING', 'FAQ', 'GET IN TOUCH', 'ABOUT', 'PARTIE
                     <div class="col-12 col-xs-12 col-lg-6 pr-40">
                         <div class="square">
                             <div>
-                                <img src="<?= $logo ?>" alt="logo_light" class="logo-footer" />
+                                <img src="{{ asset('images/logo-full-black.png') }}" alt="logo_light" class="logo-footer" />
                             </div>
 
                             <p style="color:white;">Momis berasal dari Kata Mom yang Artinya Ibu. Dengan Tagline Berbagi
