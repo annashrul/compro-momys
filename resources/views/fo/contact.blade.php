@@ -1,7 +1,7 @@
 @extends('fo/index')
 @section('content')
 
-    <div  data-aos="fade-in" data-aos-duration="4000" style="margin-top: 150px;">
+    <div   style="margin-top: 150px;">
         <div class="container">
             <div class="section-title text-center" style="display: flex;flex-direction: column;justify-content: center;">
                 <h2>CONTACT US</h2>
